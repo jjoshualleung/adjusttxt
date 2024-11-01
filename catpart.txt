@@ -13,3 +13,33 @@
 # Option ERRORS
 # 1. All parameters of program options are required and shall result in an error
 # 2. Any unrecognized option shall result in an error
+
+
+# Categories for adjusttxt parameters
+
+Parameters:
+    Skip lines:
+        Skip every even line.
+        skip every odd line.
+        Out-of-range parameter.
+        Non-integer.
+
+    Remove whitespace:
+        Leading.
+        Trailing.
+        All.
+        Unrecognized string.
+        Option with -x.
+
+    Remove empty lines:
+        All.
+        Option with -w.
+
+    Reverse line:
+        Words.
+        Whole line.
+        Unrecognized string.
+
+    Add prefix:
+        Add string.
+        Add empty string.
