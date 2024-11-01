@@ -17,7 +17,7 @@
 
 # Categories for adjusttxt parameters
 
-Parameters:
+Options:
     Skip lines:
         Skip every even line.
         skip every odd line.
@@ -43,3 +43,14 @@ Parameters:
     Add prefix:
         Add string.
         Add empty string.
+
+Program:
+    Files:
+        Empty.
+        Non-empty.
+        last parameter to input file.
+
+    Option:
+        Missing option. # show missing option parameters instead of error
+        Unrecognized option.
+        Execution order.
