@@ -1,0 +1,15 @@
+# adjusttxt allows for simple text manipulation of the contents of a file.
+# -s <number> --> Skip the lines based on the supplied parameter, number {0, 1}, every even line and odd line respectively
+# -w <spacing> --> Remove whitespaces from lines of the input file {"leading", "trailing", "all"} (beginning, middle, end)
+# -x --> Remove empty lines - it takes no parameters - mutually exclusive with the -w option
+# -r <target> Revers line of the context in the line {words: revers the order of the words, text: reverse each line as whole}
+# -p <prefix> Add prefix at the start of the line
+
+# Execution order: -s -> -w or -x --> -r --> -p
+# Empty input file shall prodice an empty output
+# FILE ERRORS
+# 1. The last line of a non-empty input file must be terminated by a newline, if not should generate an error
+# 2. The last parameter is always assumed to be a path to the input file, otherwise should generate an error e.g adjusttxt -p "Prefix" <-- without provide file path
+# Option ERRORS
+# 1. All parameters of program options are required and shall result in an error
+# 2. Any unrecognized option shall result in an error
