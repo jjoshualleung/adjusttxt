@@ -38,17 +38,15 @@ Parameters:
         Trailing.   [property TrailingWhitespace]
         All.    [property AllWhitespace]
         Unrecognized string.    [error]
-        Option with -x. [error]
         Missing parameter. [error]
 
     Remove empty lines:
         All.    [property RemoveEmptyLines]
-        Option with -w. [error]
         Missing parameter. [error]
 
     Reverse line:
-        Words.
-        Whole line.
+        Words.  [property ReverseWords]
+        Whole line. [property ReverseWholeLine]
         Unrecognized string. [error] [property InvalidReverseParameter]
         Missing parameter. [error]
 
@@ -62,3 +60,8 @@ Options:
         Unrecognized option.    [error]
         Execution order.
         Repeated options.   # Only last occurrence applied
+
+Option conflict:
+    Remove whitespace and empty lines conflict:
+        Mutually exclusive present. [if RemoveEmptyLines || (LeadingWhitespace || TrailingWhitespace || AllWhitespace)]
+        Mutually exclusive not present. [if RemoveEmptyLines && (LeadingWhitespace || TrailingWhitespace || AllWhitespace)] [error]
