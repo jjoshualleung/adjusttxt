@@ -19,26 +19,26 @@
 
 Options:
     Skip lines:
-        Skip every even line.
-        skip every odd line.
-        Out-of-range parameter.
-        Non-integer.
+        Skip every even line.   [property: 0]
+        skip every odd line.    [property: 1]
+        Out-of-range parameter. [error] [property invalid parameter]
+        Non-integer.    [error] [property invalid parameter]
 
     Remove whitespace:
-        Leading.
-        Trailing.
-        All.
-        Unrecognized string.
-        Option with -x.
+        Leading.    [property: "leading"]
+        Trailing.   [property: "trailing"]
+        All.    [property: "all"]
+        Unrecognized string.    [error] [property: invalid string]
+        Option with -x. [if RemoveEmptyLines] [error]
 
     Remove empty lines:
-        All.
-        Option with -w.
+        All.    [property RemoveEmptyLines]
+        Option with -w. [if RemoveWhitespace] [error]
 
     Reverse line:
         Words.
         Whole line.
-        Unrecognized string.
+        Unrecognized string. [error] [property InvalidReverseParameter]
 
     Add prefix:
         Add string.
@@ -46,9 +46,11 @@ Options:
 
 Program:
     Files:
-        Empty.
-        Non-empty.
-        last parameter to input file.
+        Empty.  [property EmptyFile]
+        Non-empty.  [property NonEmptyFile]
+        Last parameter is input file path. [property InputFilePathAtLast]
+        Missing new line at the end.    [if NonEmptyFile] [error]
+        Missing input file path.    [if !InputFilePathAtLast] [error]
 
     Option:
         Missing option. # show missing option parameters instead of error
