@@ -17,6 +17,19 @@
 
 # Categories for adjusttxt parameters
 
+Program:
+    Files:
+        Empty.  [property EmptyFile]
+        Non-empty.  [property NonEmptyFile]
+        Last parameter is input file path. [property InputFilePathAtLast]
+        Missing new line at the end.    [if NonEmptyFile] [error]
+        Missing input file path.    [if !InputFilePathAtLast] [error]
+
+    Option:
+        Missing option. # show missing option parameters instead of error
+        Unrecognized option.    [error]
+        Execution order.
+
 Options:
     Skip lines:
         Skip every even line.   [property EvenLines]
@@ -42,17 +55,4 @@ Options:
 
     Add prefix:
         Add string.
-        Add empty string.
-
-Program:
-    Files:
-        Empty.  [property EmptyFile]
-        Non-empty.  [property NonEmptyFile]
-        Last parameter is input file path. [property InputFilePathAtLast]
-        Missing new line at the end.    [if NonEmptyFile] [error]
-        Missing input file path.    [if !InputFilePathAtLast] [error]
-
-    Option:
-        Missing option. # show missing option parameters instead of error
-        Unrecognized option.
-        Execution order.
+        Add empty string.   [error]
