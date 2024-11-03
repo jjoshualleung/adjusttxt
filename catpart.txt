@@ -31,22 +31,26 @@ Parameters:
         skip every odd line.    [property OddLines]
         Out-of-range parameter. [error]
         Non-integer.    [error]
+        Missing parameter. [error]
 
     Remove whitespace:
         Leading.    [property LeadingWhitespace]
-        Trailing.   [property LeadingWhitespace]
+        Trailing.   [property TrailingWhitespace]
         All.    [property AllWhitespace]
         Unrecognized string.    [error]
         Option with -x. [error]
+        Missing parameter. [error]
 
     Remove empty lines:
         All.    [property RemoveEmptyLines]
         Option with -w. [error]
+        Missing parameter. [error]
 
     Reverse line:
         Words.
         Whole line.
         Unrecognized string. [error] [property InvalidReverseParameter]
+        Missing parameter. [error]
 
     Add prefix:
         Add string.
