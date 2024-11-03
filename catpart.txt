@@ -19,21 +19,21 @@
 
 Options:
     Skip lines:
-        Skip every even line.   [property: 0]
-        skip every odd line.    [property: 1]
-        Out-of-range parameter. [error] [property invalid parameter]
-        Non-integer.    [error] [property invalid parameter]
+        Skip every even line.   [property EvenLines]
+        skip every odd line.    [property OddLines]
+        Out-of-range parameter. [error]
+        Non-integer.    [error]
 
     Remove whitespace:
-        Leading.    [property: "leading"]
-        Trailing.   [property: "trailing"]
-        All.    [property: "all"]
-        Unrecognized string.    [error] [property: invalid string]
-        Option with -x. [if RemoveEmptyLines] [error]
+        Leading.    [property LeadingWhitespace]
+        Trailing.   [property LeadingWhitespace]
+        All.    [property AllWhitespace]
+        Unrecognized string.    [error]
+        Option with -x. [error]
 
     Remove empty lines:
         All.    [property RemoveEmptyLines]
-        Option with -w. [if RemoveWhitespace] [error]
+        Option with -w. [error]
 
     Reverse line:
         Words.
