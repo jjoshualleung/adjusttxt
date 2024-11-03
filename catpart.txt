@@ -41,7 +41,7 @@ Parameters:
         Missing parameter. [error]
 
     Remove empty lines:
-        All.    [property RemoveEmptyLines]
+        All.    [property RemoveEmptyLines] [if !(LeadingWhitespace || TrailingWhitespace || AllWhitespace)] [error]
         Missing parameter. [error]
 
     Reverse line:
