@@ -44,7 +44,7 @@ Parameters:
         Missing parameter. [error]
 
     Remove empty lines:
-        All.    [property RemoveEmptyLines] [if (LeadingWhitespace || TrailingWhitespace || AllWhitespace)] [error]
+        All.    [property RemoveEmptyLines] [if !(LeadingWhitespace || TrailingWhitespace || AllWhitespace)]
         Missing parameter. [error]
 
     Reverse line:
@@ -71,5 +71,5 @@ Options:
         Option not repeated.  [if NonEmptyFile]
 Option conflict:
     Remove whitespace and empty lines conflict:
-        Mutually exclusive present. [if RemoveEmptyLines || (LeadingWhitespace || TrailingWhitespace || AllWhitespace)]
-        Mutually exclusive not present. [if RemoveEmptyLines && (LeadingWhitespace || TrailingWhitespace || AllWhitespace)] [error]
+        Remove whitespace present. [if LeadingWhitespace || TrailingWhitespace || AllWhitespace]
+        Remove empty lines present. [if RemoveEmptyLines]
