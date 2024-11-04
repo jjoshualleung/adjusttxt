@@ -59,7 +59,7 @@ Parameters:
 
 Options:
     Missing or unrecognized option:
-        Missing option. # show missing option parameters instead of error
+        Missing option. [single] # show missing option parameters instead of error
         Unrecognized option.    [error]
 
     Execution order:
