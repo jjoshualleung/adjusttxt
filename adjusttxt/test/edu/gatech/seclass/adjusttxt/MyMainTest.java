@@ -120,7 +120,7 @@ public class MyMainTest {
      */
     @Test
     public void adjusttxtTest4() {
-        String input = "Hello\nHello\nHello\n";
+        String input = "Hello" + System.lineSeparator() + "Hello" + System.lineSeparator() + "Hello" + System.lineSeparator();
         Path inputFile = createFile(input);
 
         String[] args = {"-s", "100", inputFile.toString()};  // Out-of-range skip parameter
@@ -136,7 +136,7 @@ public class MyMainTest {
      */
     @Test
     public void adjusttxtTest5() {
-        String input = "Hello\nHello\nHello\n";
+        String input = "Hello" + System.lineSeparator() + "Hello" + System.lineSeparator() + "Hello" + System.lineSeparator();
         Path inputFile = createFile(input);
 
         String[] args = {"-s", "two", inputFile.toString()};
@@ -152,7 +152,7 @@ public class MyMainTest {
      */
     @Test
     public void adjusttxtTest6() {
-        String input = "Hello\nHello\n";
+        String input = "Hello" + System.lineSeparator() + "Hello" + System.lineSeparator();
         Path inputFile = createFile(input);
 
         String[] args = {"-s", inputFile.toString()};
@@ -168,7 +168,7 @@ public class MyMainTest {
      */
     @Test
     public void adjusttxtTest7() {
-        String input = "Hello\nHello\n";
+        String input = "Hello" + System.lineSeparator() + "Hello" + System.lineSeparator();
         Path inputFile = createFile(input);
 
         String[] args = {"-w", "UnrecognizedString", inputFile.toString()};
@@ -200,7 +200,7 @@ public class MyMainTest {
      */
     @Test
     public void adjusttxtTest9() {
-        String input = "Hello\n\nworld\n";
+        String input = "Hello" + System.lineSeparator() + System.lineSeparator() + "world" + System.lineSeparator();
         Path inputFile = createFile(input);
 
         String[] args = {"-x", inputFile.toString()};
@@ -300,8 +300,8 @@ public class MyMainTest {
      */
     @Test
     public void adjusttxtTest15() {
-        String input = "Write your name.\nWrite your name\n";
-        String expectedOutput = "Prefixname. your Write\n";
+        String input = "Write your name." + System.lineSeparator() + "Write your name" + System.lineSeparator();
+        String expectedOutput = "Prefixname. your Write" + System.lineSeparator();
 
         Path inputFile = createFile(input);
         String[] args = {
@@ -325,8 +325,8 @@ public class MyMainTest {
      */
     @Test
     public void adjusttxtTest16() {
-        String input = "Write your name.\nWrite your name\n";
-        String expectedOutput = "Prefixname. your Write\n";
+        String input = "Write your name." + System.lineSeparator() + "Write your name" + System.lineSeparator();
+        String expectedOutput = "Prefixname. your Write" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
@@ -350,8 +350,8 @@ public class MyMainTest {
      */
     @Test
     public void adjusttxtTest17() {
-        String input = "Write your name.\nWrite your name\n";
-        String expectedOutput = "Prefixname. your Write\n";
+        String input = "Write your name." + System.lineSeparator() + "Write your name" + System.lineSeparator();
+        String expectedOutput = "Prefixname. your Write" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
@@ -376,8 +376,8 @@ public class MyMainTest {
      */
     @Test
     public void adjusttxtTest18() {
-        String input = "Write your name.\nWrite your name\n";
-        String expectedOutput = "Prefixname. your Write\n";
+        String input = "Write your name." + System.lineSeparator() + "Write your name" + System.lineSeparator();
+        String expectedOutput = "Prefixname. your Write" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
@@ -401,8 +401,8 @@ public class MyMainTest {
      */
     @Test
     public void adjusttxtTest19() {
-        String input = "Write your name.\nWrite your name\n";
-        String expectedOutput = "Prefix.eman ruoy etirW\n";
+        String input = "Write your name." + System.lineSeparator() + "Write your name" + System.lineSeparator();
+        String expectedOutput = "Prefix.eman ruoy etirW" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
