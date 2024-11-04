@@ -3,6 +3,9 @@ package edu.gatech.seclass.adjusttxt;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.api.io.TempDir;
@@ -14,9 +17,11 @@ public class MyMainTest {
             "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE"
                     + System.lineSeparator();
 
-    @TempDir Path tempDirectory;
+    @TempDir
+    Path tempDirectory;
 
-    @RegisterExtension OutputCapture capture = new OutputCapture();
+    @RegisterExtension
+    OutputCapture capture = new OutputCapture();
 
     /* ----------------------------- Test Utilities ----------------------------- */
 
@@ -67,5 +72,207 @@ public class MyMainTest {
     }
 
     /* ------------------------------- Test Cases ------------------------------- */
+
+    /**
+     * Frame #: 1 - Test for empty file
+     */
+    @Test
+    public void adjusttxtTest1() {
+        Path inputFile = createFile("");
+        String[] args = {inputFile.toString()};
+        Main.main(args);
+
+        Assertions.assertTrue(capture.stdout().isEmpty());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+    }
+
+    /*
+     * Frame #: 2 - Missing newline at end
+     */
+    @Test
+    public void adjusttxtTest2() {
+        String input = "Missing newline at the end";
+        Path inputFile = createFile(input);
+
+        String[] args = {inputFile.toString()};
+        Main.main(args);
+
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+        Assertions.assertEquals(expectedError, capture.stderr());
+        Assertions.assertTrue(capture.stdout().isEmpty());
+    }
+
+    /*
+     * Frame #: 3 - Missing input file path
+     */
+    @Test
+    public void adjusttxtTest3() {
+        String[] args = {};
+        Main.main(args);
+
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+        Assertions.assertEquals(expectedError, capture.stderr());
+        Assertions.assertTrue(capture.stdout().isEmpty());
+    }
+
+    /*
+     * Frame #: 4 - Skip lines parameter out of range
+     */
+    @Test
+    public void adjusttxtTest4() {
+        String input = "Hello\nHello\nHello\n";
+        Path inputFile = createFile(input);
+
+        String[] args = {"-s", "100", inputFile.toString()};  // Out-of-range skip parameter
+        Main.main(args);
+
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+        Assertions.assertEquals(expectedError, capture.stderr());
+        Assertions.assertTrue(capture.stdout().isEmpty());
+    }
+
+    /*
+     * Frame #: 5 - Non-integer skip lines parameter
+     */
+    @Test
+    public void adjusttxtTest5() {
+        String input = "Hello\nHello\nHello\n";
+        Path inputFile = createFile(input);
+
+        String[] args = {"-s", "two", inputFile.toString()};
+        Main.main(args);
+
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+        Assertions.assertEquals(expectedError, capture.stderr());
+        Assertions.assertTrue(capture.stdout().isEmpty());
+    }
+
+    /*
+     * Frame #: 6 - Missing skip lines parameter
+     */
+    @Test
+    public void adjusttxtTest6() {
+        String input = "Hello\nHello\n";
+        Path inputFile = createFile(input);
+
+        String[] args = {"-s", inputFile.toString()};
+        Main.main(args);
+
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+        Assertions.assertEquals(expectedError, capture.stderr());
+        Assertions.assertTrue(capture.stdout().isEmpty());
+    }
+
+    /*
+     * Frame #: 7 - Unrecognized string for remove whitespace
+     */
+    @Test
+    public void adjusttxtTest7() {
+        String input = "Hello\nHello\n";
+        Path inputFile = createFile(input);
+
+        String[] args = {"-w", "UnrecognizedString", inputFile.toString()};
+        Main.main(args);
+
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+        Assertions.assertEquals(expectedError, capture.stderr());
+        Assertions.assertTrue(capture.stdout().isEmpty());
+    }
+
+    /*
+     * Frame #: 8 - Remove whitespace with missing parameter
+     */
+    @Test
+    public void adjusttxtTest8() {
+        String input = "How are you today";
+        Path inputFile = createFile(input);
+
+        String[] args = {"-w", inputFile.toString()};
+        Main.main(args);
+
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+        Assertions.assertEquals(expectedError, capture.stderr());
+        Assertions.assertTrue(capture.stdout().isEmpty());
+    }
+
+    /*
+     * Frame #: 9 - Remove empty lines with missing parameter
+     */
+    @Test
+    public void adjusttxtTest9() {
+        String input = "Hello\n\nworld\n";
+        Path inputFile = createFile(input);
+
+        String[] args = {"-x", inputFile.toString()};
+        Main.main(args);
+
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+        Assertions.assertEquals(expectedError, capture.stderr());
+        Assertions.assertTrue(capture.stdout().isEmpty());
+    }
+
+    /*
+     * Frame #: 10 - Reverse line with unrecognized string parameter
+     */
+    @Test
+    public void adjusttxtTest10() {
+        String input = "My name is Joshua";
+        Path inputFile = createFile(input);
+
+        String[] args = {"-r", "UnrecognizedOption", inputFile.toString()};
+        Main.main(args);
+
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+        Assertions.assertEquals(expectedError, capture.stderr());
+        Assertions.assertTrue(capture.stdout().isEmpty());
+    }
+
+    /*
+     * Frame #: 11 - Reverse line with missing parameter
+     */
+    @Test
+    public void adjusttxtTest11() {
+        String input = "My name is Joshua";
+        Path inputFile = createFile(input);
+
+        String[] args = {"-r", inputFile.toString()};
+        Main.main(args);
+
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+        Assertions.assertEquals(expectedError, capture.stderr());
+        Assertions.assertTrue(capture.stdout().isEmpty());
+    }
+
+    /*
+     * Frame #: 12 - Add prefix with empty string (no prefix)
+     */
+    @Test
+    public void adjusttxtTest12() {
+        String input = "Add prefix with empty string";
+        Path inputFile = createFile(input);
+
+        String[] args = {"-p", "", inputFile.toString()};
+        Main.main(args);
+
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+        Assertions.assertEquals(expectedError, capture.stderr());
+        Assertions.assertTrue(capture.stdout().isEmpty());
+    }
+
+    /*
+     * Frame #: 13 - Unrecognized option
+     */
+    @Test
+    public void adjusttxtTest13() {
+        String input = "I go to school by bus";
+        Path inputFile = createFile(input);
+
+        String[] args = {"-a", inputFile.toString()};  // Unrecognized option -a
+        Main.main(args);
+
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+        Assertions.assertEquals(expectedError, capture.stderr());
+        Assertions.assertTrue(capture.stdout().isEmpty());
+    }
 
 }
