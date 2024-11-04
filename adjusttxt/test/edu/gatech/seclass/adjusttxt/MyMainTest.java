@@ -709,7 +709,7 @@ public class MyMainTest {
     @Test
     public void adjusttxtTest31() {
         String input = "Write your name.   " + System.lineSeparator() + "Write your name   " + System.lineSeparator();
-        String expectedOutput = "Prefixname.yourWrite" + System.lineSeparator();
+        String expectedOutput = "PrefixWriteyourname." + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
