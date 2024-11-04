@@ -351,4 +351,80 @@ public class MyMainTest {
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
 
+    /*
+     * Frame #: 17 - Non-empty file, skip every even line, remove leading whitespace, reverse words,
+     * add prefix, with incorrect execution order and no repeated options, remove whitespace present
+     */
+    @Test
+    public void adjusttxtTest17() {
+        String input = "Write your name.\nWrite your name\n";
+        String expectedOutput = "Prefixname. your Write\n";
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-r", "words",  // incorrect order --> applied later
+                "-s", "0",
+                "-w", "leading",
+                "-p", "Prefix",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 18 - Non-empty file, skip every even line, remove leading whitespace, reverse whole line,
+     * add prefix, with correct execution order and repeated options, remove whitespace present
+     */
+    @Test
+    public void adjusttxtTest18() {
+        String input = "Write your name.\nWrite your name\n";
+        String expectedOutput = "Prefix.eman ruoy etirW\n";
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "0",
+                "-w", "leading",
+                "-r", "text",
+                "-p", "Prefix",
+                "-s", "0",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 19 - Non-empty file, skip every even line, remove leading whitespace, reverse whole line,
+     * add prefix, with correct execution order and no repeated options, remove whitespace present
+     */
+    @Test
+    public void adjusttxtTest19() {
+        String input = "Write your name." + System.lineSeparator() + "Write your name" + System.lineSeparator();
+        String expectedOutput = "Prefix.name ruoy etirW" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "0",
+                "-w", "leading",
+                "-r", "text",
+                "-p", "Prefix",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
 }
