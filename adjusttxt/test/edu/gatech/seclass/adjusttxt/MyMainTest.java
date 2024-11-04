@@ -735,7 +735,7 @@ public class MyMainTest {
     @Test
     public void adjusttxtTest32() {
         String input = "Write your name.   " + System.lineSeparator() + "Write your name   " + System.lineSeparator();
-        String expectedOutput = "Prefixname.yourWrite" + System.lineSeparator();
+        String expectedOutput = "PrefixWriteyourname." + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
@@ -760,7 +760,7 @@ public class MyMainTest {
     @Test
     public void adjusttxtTest33() {
         String input = "Write your name.   " + System.lineSeparator() + "Write your name   " + System.lineSeparator();
-        String expectedOutput = "Prefixname.yourWrite" + System.lineSeparator();
+        String expectedOutput = "PrefixWriteyourname." + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
@@ -786,7 +786,7 @@ public class MyMainTest {
     @Test
     public void adjusttxtTest34() {
         String input = "Write your name.   " + System.lineSeparator() + "Write your name   " + System.lineSeparator();
-        String expectedOutput = "Prefixname.yourWrite" + System.lineSeparator();
+        String expectedOutput = "PrefixWriteyourname." + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
