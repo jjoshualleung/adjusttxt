@@ -1221,4 +1221,330 @@ public class MyMainTest {
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
 
+    /*
+     * Frame #: 51 - Non-empty file, skip every odd line, remove trailing whitespace, reverse whole line,
+     * add prefix "Mr.", with correct execution order and repeated options, remove whitespace present
+     */
+    @Test
+    public void adjusttxtTest51() {
+        String input = "My name is Joshua   " + System.lineSeparator() +
+                "Leung is my surname   " + System.lineSeparator() +
+                "Hello world   " + System.lineSeparator();
+        String expectedOutput = "Mr.ahsuJ si eman yM" + System.lineSeparator() + "Mr.dlrow olleH" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "1",
+                "-w", "trailing",
+                "-r", "text",
+                "-p", "Mr.",
+                "-s", "1",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 52 - Non-empty file, skip every odd line, remove trailing whitespace, reverse whole line,
+     * add prefix with correct execution order and no repeated options, remove whitespace present
+     */
+    @Test
+    public void adjusttxtTest52() {
+        String input = "My name is Joshua   " + System.lineSeparator() +
+                "Leung is my surname   " + System.lineSeparator() +
+                "Hello world   " + System.lineSeparator();
+        String expectedOutput = "Mr.ahsuJ si eman yM" + System.lineSeparator() + "Mr.dlrow olleH" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "1",
+                "-w", "trailing",
+                "-r", "text",
+                "-p", "Mr.",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 53 - Incorrect execution order and repeated options
+     */
+    @Test
+    public void adjusttxtTest53() {
+        String input = "My name is Joshua   " + System.lineSeparator() +
+                "Leung is my surname   " + System.lineSeparator() +
+                "Hello world   " + System.lineSeparator();
+        String expectedOutput = "Mr.ahsuJ si eman yM" + System.lineSeparator() + "Mr.dlrow olleH" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-r", "text",  // Incorrect order
+                "-s", "1",
+                "-p", "Mr.",
+                "-s", "1",
+                "-w", "trailing",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 54 - Incorrect execution order and no repeated options
+     */
+    @Test
+    public void adjusttxtTest54() {
+        String input = "My name is Joshua   " + System.lineSeparator() +
+                "Leung is my surname   " + System.lineSeparator() +
+                "Hello world   " + System.lineSeparator();
+        String expectedOutput = "Mr.ahsuJ si eman yM" + System.lineSeparator() + "Mr.dlrow olleH" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-r", "text",  // Incorrect order
+                "-s", "1",
+                "-w", "trailing",
+                "-p", "Mr.",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 55 - Non-empty file, skip every odd line, remove all whitespace, reverse words,
+     * add prefix with correct execution order and repeated options
+     */
+    @Test
+    public void adjusttxtTest55() {
+        String input = "My name is Joshua   " + System.lineSeparator() +
+                "Leung is my surname   " + System.lineSeparator() +
+                "Hello world   " + System.lineSeparator();
+        String expectedOutput = "Mr.Joshua is name My" + System.lineSeparator() + "Mr.world Hello" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "1",
+                "-w", "all",
+                "-r", "words",
+                "-p", "Mr.",
+                "-s", "1",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 56 - Non-empty file, skip every odd line, remove all whitespace, reverse words,
+     * add prefix with correct execution order and no repeated options
+     */
+    @Test
+    public void adjusttxtTest56() {
+        String input = "My name is Joshua   " + System.lineSeparator() +
+                "Leung is my surname   " + System.lineSeparator() +
+                "Hello world   " + System.lineSeparator();
+        String expectedOutput = "Mr.Joshua is name My" + System.lineSeparator() + "Mr.world Hello" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "1",
+                "-w", "all",
+                "-r", "words",
+                "-p", "Mr.",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 57 - Non-empty file, skip every odd line, remove all whitespace, reverse words,
+     * add prefix but with incorrect execution order and repeated options
+     */
+    @Test
+    public void adjusttxtTest57() {
+        String input = "My name is Joshua   " + System.lineSeparator() +
+                "Leung is my surname   " + System.lineSeparator() +
+                "Hello world   " + System.lineSeparator();
+        String expectedOutput = "Mr.Joshua is name My" + System.lineSeparator() + "Mr.world Hello" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-r", "words",  // Incorrect order
+                "-s", "1",
+                "-p", "Mr.",
+                "-s", "1",
+                "-w", "all",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 58 - Non-empty file, skip every odd line, remove all whitespace, reverse words,
+     * add prefix with incorrect execution order and no repeated options
+     */
+    @Test
+    public void adjusttxtTest58() {
+        String input = "My name is Joshua   " + System.lineSeparator() +
+                "Leung is my surname   " + System.lineSeparator() +
+                "Hello world   " + System.lineSeparator();
+        String expectedOutput = "Mr.Joshua is name My" + System.lineSeparator() + "Mr.world Hello" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-r", "words",  // Incorrect order
+                "-s", "1",
+                "-w", "all",
+                "-p", "Mr.",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 59 - Non-empty file, skip every odd line, remove all whitespace, reverse whole line,
+     * add prefix with correct execution order and repeated options
+     */
+    @Test
+    public void adjusttxtTest59() {
+        String input = "My name is Joshua   " + System.lineSeparator() +
+                "Leung is my surname   " + System.lineSeparator() +
+                "Hello world   " + System.lineSeparator();
+        String expectedOutput = "Mr.ahsuJ si eman yM" + System.lineSeparator() + "Mr.dlrow olleH" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "1",
+                "-w", "all",
+                "-r", "text",
+                "-p", "Mr.",
+                "-s", "1",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 60 - Non-empty file, skip every odd line, remove all whitespace, reverse whole line,
+     * add prefix with correct execution order but with no repeated options
+     */
+    @Test
+    public void adjusttxtTest60() {
+        String input = "My name is Joshua   " + System.lineSeparator() +
+                "Leung is my surname   " + System.lineSeparator() +
+                "Hello world   " + System.lineSeparator();
+        String expectedOutput = "Mr.ahsuJ si eman yM" + System.lineSeparator() + "Mr.dlrow olleH" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "1",
+                "-w", "all",
+                "-r", "text",
+                "-p", "Mr.",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 61 - Incorrect execution order and repeated options
+     */
+    @Test
+    public void adjusttxtTest61() {
+        String input = "My name is Joshua   " + System.lineSeparator() +
+                "Leung is my surname   " + System.lineSeparator() +
+                "Hello world   " + System.lineSeparator();
+        String expectedOutput = "Mr.ahsuJ si eman yM" + System.lineSeparator() + "Mr.dlrow olleH" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-r", "text",  // Incorrect order
+                "-s", "1",
+                "-p", "Mr.",
+                "-s", "1",
+                "-w", "all",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 62 - Non-empty file, skip every odd line, remove all whitespace, reverse whole line,
+     * add prefix  but with incorrect execution order and no repeated options
+     */
+    @Test
+    public void adjusttxtTest62() {
+        String input = "My name is Joshua   " + System.lineSeparator() +
+                "Leung is my surname   " + System.lineSeparator() +
+                "Hello world   " + System.lineSeparator();
+        String expectedOutput = "Mr.ahsuJ si eman yM" + System.lineSeparator() + "Mr.dlrow olleH" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-r", "text",  // Incorrect order
+                "-s", "1",
+                "-w", "all",
+                "-p", "Mr.",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
 }
