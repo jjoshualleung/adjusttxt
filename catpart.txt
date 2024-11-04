@@ -44,7 +44,7 @@ Parameters:
         Missing parameter. [error]
 
     Remove empty lines:
-        All.    [property RemoveEmptyLines] [if !(LeadingWhitespace || TrailingWhitespace || AllWhitespace)] [error]
+        All.    [property RemoveEmptyLines] [if (LeadingWhitespace || TrailingWhitespace || AllWhitespace)] [error]
         Missing parameter. [error]
 
     Reverse line:
@@ -54,16 +54,21 @@ Parameters:
         Missing parameter. [error]
 
     Add prefix:
-        Add string.
+        Add prefix. [property AddPrefix]
         Add empty string.   [error]
 
 Options:
-    Option:
-        Missing option. [single] # show missing option parameters instead of error
+    Missing or unrecognized option:
+        Missing option. # show missing option parameters instead of error
         Unrecognized option.    [error]
-        Execution order.
-        Repeated options.   # Only last occurrence applied
 
+    Execution order:
+        Correct execution order.
+        Incorrect Execution Order.
+
+    Repeated options:
+        Option repeated. [if NonEmptyFile]
+        Option not repeated.  [if NonEmptyFile]
 Option conflict:
     Remove whitespace and empty lines conflict:
         Mutually exclusive present. [if RemoveEmptyLines || (LeadingWhitespace || TrailingWhitespace || AllWhitespace)]
