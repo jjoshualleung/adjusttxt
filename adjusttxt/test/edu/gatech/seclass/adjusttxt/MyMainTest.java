@@ -1713,4 +1713,24 @@ public class MyMainTest {
         Assertions.assertTrue(capture.stderr().isEmpty());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
+
+    /*
+     * Frame #: 70 - Add prefix option with another prefix option
+     */
+    @Test
+    public void adjusttxtTest70() {
+        String input = "Meow" + System.lineSeparator();
+
+        String expectedOutput = "-PMeow" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {"-p", "-p",inputFile.toString()};
+
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
 }
