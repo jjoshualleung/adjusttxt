@@ -1530,7 +1530,7 @@ public class MyMainTest {
         String input = "My name is Joshua   " + System.lineSeparator() +
                 "Leung is my surname   " + System.lineSeparator() +
                 "Hello world   " + System.lineSeparator();
-        String expectedOutput = " Mr.emanrusymsignueL" + System.lineSeparator();
+        String expectedOutput = "Mr.emanrusymsignueL" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
