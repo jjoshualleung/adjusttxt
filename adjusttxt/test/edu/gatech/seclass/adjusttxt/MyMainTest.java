@@ -1673,4 +1673,24 @@ public class MyMainTest {
         Assertions.assertTrue(capture.stderr().isEmpty());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
+
+    /*
+     * Frame #: 68 - Repeated reverse line with different parameter
+     */
+    @Test
+    public void adjusttxtTest68() {
+        String input = "Hello world" + System.lineSeparator();
+
+        String expectedOutput = "dlrow olleH" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {"-r", "words", "-r", "text",inputFile.toString()};
+
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
 }
