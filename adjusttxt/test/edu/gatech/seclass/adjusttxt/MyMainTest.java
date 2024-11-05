@@ -1582,7 +1582,7 @@ public class MyMainTest {
     }
 
     /*
-     * Frame #: 64 - Test -x Remove empty line
+     * Frame #: 64 - Repeated skip options with different parameter
      * Non-empty file, reverse words,
      * add prefix, correct execution order and repeated options with different parameter
      */
@@ -1600,7 +1600,6 @@ public class MyMainTest {
 
         String[] args = {
                 "-s", "0",
-                "-x",
                 "-r", "words",
                 "-p", "Mr.",
                 "-s", "1",
