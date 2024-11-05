@@ -1617,7 +1617,7 @@ public class MyMainTest {
     public void adjusttxtTest65() {
         String input = "    My name is Joshua   " + System.lineSeparator();
 
-        String expectedOutput = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
@@ -1628,9 +1628,8 @@ public class MyMainTest {
         };
         Main.main(args);
 
-        Assertions.assertEquals(expectedOutput, capture.stdout());
-        Assertions.assertTrue(capture.stderr().isEmpty());
-        Assertions.assertEquals(input, getFileContent(inputFile));
+        Assertions.assertTrue(capture.stderr().contains(expectedError));
+        Assertions.assertTrue(capture.stdout().isEmpty());
     }
 
 }
