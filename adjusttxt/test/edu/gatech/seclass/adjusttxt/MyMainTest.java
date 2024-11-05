@@ -1553,26 +1553,24 @@ public class MyMainTest {
 
     /*
      * Frame #: 63 - Test -x Remove empty line
-     * Non-empty file, skip every odd line, remove all whitespace, reverse whole line,
+     * Non-empty file, reverse words,
      * add prefix, correct execution order and no repeated options
      */
     @Test
     public void adjusttxtTest63() {
-        String input = "My name is Joshua" + System.lineSeparator()
-                + System.lineSeparator()
-                + "Leung is my surname" + System.lineSeparator()
-                + System.lineSeparator()
-                + "Hello world" + System.lineSeparator()
-                + System.lineSeparator();
+        String input = "My name is Joshua" + System.lineSeparator() // 1
+                + System.lineSeparator() // 2
+                + "Hello world" + System.lineSeparator() // 3
+                + System.lineSeparator(); // 4
 
-        String expectedOutput = "Mr.Leung is my surname" + System.lineSeparator();
+        String expectedOutput = "Mr.Joshua is name My" + System.lineSeparator() +
+                "Mr.world Hello" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
         String[] args = {
-                "-s", "1",
                 "-x",
-                "-r", "text",
+                "-r", "words",
                 "-p", "Mr.",
                 inputFile.toString()
         };
