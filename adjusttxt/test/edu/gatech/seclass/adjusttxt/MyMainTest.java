@@ -1610,4 +1610,27 @@ public class MyMainTest {
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
 
+    /*
+     * Frame #: 65 - Mutually exclusive not present for -x and -w
+     */
+    @Test
+    public void adjusttxtTest65() {
+        String input = "    My name is Joshua   " + System.lineSeparator();
+
+        String expectedOutput = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-w", "all",
+                "-x",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
 }
