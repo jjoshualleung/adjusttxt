@@ -1632,4 +1632,24 @@ public class MyMainTest {
         Assertions.assertTrue(capture.stdout().isEmpty());
     }
 
+    /*
+     * Frame #: 66 - Add option as prefix
+     */
+    @Test
+    public void adjusttxtTest66() {
+        String input = "Hello" + System.lineSeparator();
+
+        String expectedOutput = "-xHello" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {"-p","-x",inputFile.toString()};
+
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
 }
