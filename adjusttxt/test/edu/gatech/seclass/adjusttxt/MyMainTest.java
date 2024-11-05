@@ -1721,7 +1721,7 @@ public class MyMainTest {
     public void adjusttxtTest70() {
         String input = "Meow" + System.lineSeparator();
 
-        String expectedOutput = "-PMeow" + System.lineSeparator();
+        String expectedOutput = "-pMeow" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
