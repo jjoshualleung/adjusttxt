@@ -1652,4 +1652,25 @@ public class MyMainTest {
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
 
+    /*
+     * Frame #: 67 - Consider last remove space option
+     */
+    @Test
+    public void adjusttxtTest67() {
+        String input = "    Kissy face Kissy face" + System.lineSeparator()
+                + "    Don't you want me like I want you baby" + System.lineSeparator()
+                + "    Reference to APT. Rose & Bruno Mars" + System.lineSeparator();
+
+        String expected = "Kissy face Kissy face" + System.lineSeparator()
+                + "Don't you want me like I want you baby" + System.lineSeparator()
+                + "Reference to APT. Rose & Bruno Mars" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+        String[] args = {"-w", "all", "-w", "trailing", "-w", "leading", inputFile.toString()};
+        Main.main(args);
+
+        Assertions.assertEquals(expected, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
 }
