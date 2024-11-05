@@ -1693,4 +1693,24 @@ public class MyMainTest {
         Assertions.assertTrue(capture.stderr().isEmpty());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
+
+    /*
+     * Frame #: 69 - Repeated add prefix option with different string parameter
+     */
+    @Test
+    public void adjusttxtTest69() {
+        String input = "Bean" + System.lineSeparator();
+
+        String expectedOutput = "Mr.Bean" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {"-p", "Ms.", "-p", "Mr.",inputFile.toString()};
+
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
 }
