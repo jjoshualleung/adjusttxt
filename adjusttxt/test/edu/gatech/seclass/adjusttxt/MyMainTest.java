@@ -1581,4 +1581,36 @@ public class MyMainTest {
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
 
+    /*
+     * Frame #: 64 - Test -x Remove empty line
+     * Non-empty file, reverse words,
+     * add prefix, correct execution order and repeated options with different parameter
+     */
+    @Test
+    public void adjusttxtTest64() {
+        String input = "My name is Joshua" + System.lineSeparator() // 1
+                + System.lineSeparator() // 2
+                + "Hello world" + System.lineSeparator() // 3
+                + System.lineSeparator(); // 4
+
+        String expectedOutput = "Mr.Joshua is name My" + System.lineSeparator() +
+                "Mr.world Hello" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "0",
+                "-x",
+                "-r", "words",
+                "-p", "Mr.",
+                "-s", "1",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
 }
