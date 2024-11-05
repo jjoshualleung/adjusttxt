@@ -1230,7 +1230,7 @@ public class MyMainTest {
         String input = "My name is Joshua   " + System.lineSeparator() +
                 "Leung is my surname   " + System.lineSeparator() +
                 "Hello world   " + System.lineSeparator();
-        String expectedOutput = "Mr.ahsuJ si eman yM" + System.lineSeparator() + "Mr.dlrow olleH" + System.lineSeparator();
+        String expectedOutput = "Mr.emanrus ym si gnueL" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
@@ -1258,7 +1258,7 @@ public class MyMainTest {
         String input = "My name is Joshua   " + System.lineSeparator() +
                 "Leung is my surname   " + System.lineSeparator() +
                 "Hello world   " + System.lineSeparator();
-        String expectedOutput = "Mr.ahsuJ si eman yM" + System.lineSeparator() + "Mr.dlrow olleH" + System.lineSeparator();
+        String expectedOutput = "Mr.emanrus ym si gnueL" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
@@ -1284,7 +1284,7 @@ public class MyMainTest {
         String input = "My name is Joshua   " + System.lineSeparator() +
                 "Leung is my surname   " + System.lineSeparator() +
                 "Hello world   " + System.lineSeparator();
-        String expectedOutput = "Mr.ahsuJ si eman yM" + System.lineSeparator() + "Mr.dlrow olleH" + System.lineSeparator();
+        String expectedOutput = "Mr.emanrus ym si gnueL" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
@@ -1311,7 +1311,7 @@ public class MyMainTest {
         String input = "My name is Joshua   " + System.lineSeparator() +
                 "Leung is my surname   " + System.lineSeparator() +
                 "Hello world   " + System.lineSeparator();
-        String expectedOutput = "Mr.ahsuJ si eman yM" + System.lineSeparator() + "Mr.dlrow olleH" + System.lineSeparator();
+        String expectedOutput = "Mr.emanrus ym si gnueL" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
