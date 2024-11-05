@@ -203,7 +203,7 @@ public class MyMainTest {
         String input = "Hello" + System.lineSeparator() + System.lineSeparator() + "world" + System.lineSeparator();
         Path inputFile = createFile(input);
 
-        String[] args = {"-x","", inputFile.toString()};
+        String[] args = {"-x", "", inputFile.toString()};
         Main.main(args);
 
         String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
@@ -803,6 +803,7 @@ public class MyMainTest {
         Assertions.assertTrue(capture.stderr().isEmpty());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
+
     /*
      * Frame #: 35 - Non-empty file, skip every even line, remove all whitespace, reverse whole line,
      * add prefix, with correct execution order and repeated options.
@@ -1538,6 +1539,40 @@ public class MyMainTest {
                 "-r", "text",  // Incorrect order
                 "-s", "1",
                 "-w", "all",
+                "-p", "Mr.",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /* ------------------------------- Additional Test Cases ------------------------------- */
+
+    /*
+     * Frame #: 63 - Test -x Remove empty line
+     * Non-empty file, skip every odd line, remove all whitespace, reverse whole line,
+     * add prefix, correct execution order and no repeated options
+     */
+    @Test
+    public void adjusttxtTest63() {
+        String input = "My name is Joshua" + System.lineSeparator()
+                + System.lineSeparator()
+                + "Leung is my surname" + System.lineSeparator()
+                + System.lineSeparator()
+                + "Hello world" + System.lineSeparator()
+                + System.lineSeparator();
+
+        String expectedOutput = "Mr.Leung is my surname" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "1",
+                "-x",
+                "-r", "text",
                 "-p", "Mr.",
                 inputFile.toString()
         };
