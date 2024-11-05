@@ -203,7 +203,7 @@ public class MyMainTest {
         String input = "Hello" + System.lineSeparator() + System.lineSeparator() + "world" + System.lineSeparator();
         Path inputFile = createFile(input);
 
-        String[] args = {"-x", inputFile.toString()};
+        String[] args = {"-x","", inputFile.toString()};
         Main.main(args);
 
         String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
