@@ -1580,4 +1580,97 @@ public class MyMainTest {
         Assertions.assertTrue(capture.stderr().isEmpty());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
+
+    /*
+     * Frame #: 64 - Test -x Remove empty line, reverse words, skip even lines
+     * Non-empty file
+     * add prefix, correct execution order and no repeated options
+     */
+    @Test
+    public void adjusttxtTest64() {
+        String input = "My name is Joshua" + System.lineSeparator() // 1
+                + System.lineSeparator() // 2
+                + "Hello world" + System.lineSeparator() // 3
+                + System.lineSeparator(); // 4
+
+        String expectedOutput = "Mr.Joshua is name My" + System.lineSeparator() +
+                "Mr.world Hello" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "0",
+                "-x",
+                "-r", "words",
+                "-p", "Mr.",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+
+    /*
+     * Frame #: 65 - Test -x Remove empty line, reverse text
+     * Non-empty file
+     * add prefix, correct execution order and no repeated options
+     */
+    @Test
+    public void adjusttxtTest65() {
+        String input = "My name is Joshua" + System.lineSeparator() // 1
+                + System.lineSeparator() // 2
+                + "Hello world" + System.lineSeparator() // 3
+                + System.lineSeparator(); // 4
+
+        String expectedOutput = "Mr.auhsoJ si eman yM" + System.lineSeparator() +
+                "Mr.dlrow olleH" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-x",
+                "-r", "text",
+                "-p", "Mr.",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
+    /*
+     * Frame #: 65 - Test -x Remove empty line, reverse text, skip even lines
+     * Non-empty file
+     * add prefix, correct execution order and no repeated options
+     */
+    @Test
+    public void adjusttxtTest66() {
+        String input = "My name is Joshua" + System.lineSeparator() // 1
+                + System.lineSeparator() // 2
+                + "Hello world" + System.lineSeparator() // 3
+                + System.lineSeparator(); // 4
+
+        String expectedOutput = "Mr.auhsoJ si eman yM" + System.lineSeparator() +
+                "Mr.dlrow olleH" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "0",
+                "-x",
+                "-r", "text",
+                "-p", "Mr.",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
 }
