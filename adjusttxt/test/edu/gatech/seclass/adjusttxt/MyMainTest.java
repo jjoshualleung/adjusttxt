@@ -1589,12 +1589,10 @@ public class MyMainTest {
     @Test
     public void adjusttxtTest64() {
         String input = "My name is Joshua" + System.lineSeparator() // 1
-                + System.lineSeparator() // 2
-                + "Hello world" + System.lineSeparator() // 3
-                + System.lineSeparator(); // 4
+                + "Hello world" + System.lineSeparator() // 2
+                + "How are you?" + System.lineSeparator(); // 3
 
-        String expectedOutput = "Mr.Joshua is name My" + System.lineSeparator() +
-                "Mr.world Hello" + System.lineSeparator();
+        String expectedOutput = "Mr.world Hello" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
