@@ -1738,21 +1738,18 @@ public class MyMainTest {
     }
 
     /*
-     * Frame #: 71 - Test input file not at last parameter
+     * Frame #: 71 - Test non-empty file without options
      */
     @Test
     public void adjusttxtTest71() {
         String input = "Hello world" + System.lineSeparator();
 
-        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
-
         Path inputFile = createFile(input);
-
-        String[] args = {inputFile.toString(), "-x"};
-
+        String[] args = {inputFile.toString()};
         Main.main(args);
 
-        Assertions.assertTrue(capture.stderr().contains(expectedError));
         Assertions.assertTrue(capture.stdout().isEmpty());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
     }
 }
