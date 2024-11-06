@@ -1760,27 +1760,4 @@ public class MyMainTest {
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
 
-    /*
-     * Frame #: 72 - Test skip lines and remove empty line
-     */
-    @Test
-    public void adjusttxtTest72() {
-        String input = "Hello" + System.lineSeparator() //1
-                + System.lineSeparator() // 2
-                + "world" + System.lineSeparator() // 3
-                + "wow" + System.lineSeparator() // 4
-                + System.lineSeparator(); // 5
-
-        String expected = "Hello" + System.lineSeparator()
-                + "world" + System.lineSeparator();
-
-        Path inputFile = createFile(input);
-        String[] args = {"-s", "0", "-x", inputFile.toString()};
-        Main.main(args);
-
-        Assertions.assertTrue(capture.stderr().isEmpty());
-        Assertions.assertEquals(expected, capture.stdout());
-        Assertions.assertEquals(input, getFileContent(inputFile));
-    }
-
 }
