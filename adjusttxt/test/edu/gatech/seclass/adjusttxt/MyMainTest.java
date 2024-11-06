@@ -1714,23 +1714,26 @@ public class MyMainTest {
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
 
+
     /*
-     * Frame #: 70 - Add prefix option with another prefix option
+     * Frame #: 70 - Single test on removing empty lines option
      */
     @Test
     public void adjusttxtTest70() {
-        String input = "Meow" + System.lineSeparator();
+        String input = "Hello" + System.lineSeparator() +
+                System.lineSeparator() +
+                "world" + System.lineSeparator();
 
-        String expectedOutput = "-pMeow" + System.lineSeparator();
+        String expectedOutput = "Hello" + System.lineSeparator() +
+                "world" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
-        String[] args = {"-p", "-p",inputFile.toString()};
-
+        String[] args = {"-x", inputFile.toString()};
         Main.main(args);
 
-        Assertions.assertEquals(expectedOutput, capture.stdout());
-        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(expectedOutput, capture.stderr());
+        Assertions.assertTrue(capture.stdout().isEmpty());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
 }
