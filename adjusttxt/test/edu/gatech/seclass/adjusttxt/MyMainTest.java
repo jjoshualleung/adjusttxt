@@ -1749,7 +1749,7 @@ public class MyMainTest {
                 + System.lineSeparator(); // 5
 
         String expected = "##olleH" + System.lineSeparator()
-                + "##dlorw" + System.lineSeparator();
+                + "##dlrow" + System.lineSeparator();
 
         Path inputFile = createFile(input);
         String[] args = {"-s", "0", "-x", "-p", "##", "-r", "text", inputFile.toString()};
