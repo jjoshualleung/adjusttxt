@@ -1738,22 +1738,21 @@ public class MyMainTest {
     }
 
     /*
-     * Frame #: 71 - Single test on reverse option with parameter text
+     * Frame #: 71 - Test input file not at last parameter
      */
     @Test
     public void adjusttxtTest71() {
         String input = "Hello world" + System.lineSeparator();
 
-        String expectedOutput = "dlrow olleH" + System.lineSeparator();
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
-        String[] args = {"-r", "text",inputFile.toString()};
+        String[] args = {inputFile.toString(), "-x"};
 
         Main.main(args);
 
-        Assertions.assertEquals(expectedOutput, capture.stdout());
-        Assertions.assertTrue(capture.stderr().isEmpty());
-        Assertions.assertEquals(input, getFileContent(inputFile));
+        Assertions.assertTrue(capture.stderr().contains(expectedError));
+        Assertions.assertTrue(capture.stdout().isEmpty());
     }
 }
