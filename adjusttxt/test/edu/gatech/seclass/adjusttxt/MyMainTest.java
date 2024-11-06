@@ -1720,9 +1720,9 @@ public class MyMainTest {
      */
     @Test
     public void adjusttxtTest70() {
-        String input = "Hello" + System.lineSeparator() +
-                System.lineSeparator() +
-                "world" + System.lineSeparator();
+        String input = "Hello" + System.lineSeparator()
+                + System.lineSeparator()
+                + "world" + System.lineSeparator();
 
         String expectedOutput = "Hello" + System.lineSeparator() +
                 "world" + System.lineSeparator();
