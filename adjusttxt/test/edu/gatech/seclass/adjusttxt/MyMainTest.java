@@ -1736,4 +1736,24 @@ public class MyMainTest {
         Assertions.assertTrue(capture.stderr().isEmpty());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
+
+    /*
+     * Frame #: 71 - Single test on reverse option with parameter text
+     */
+    @Test
+    public void adjusttxtTest71() {
+        String input = "Hello world" + System.lineSeparator();
+
+        String expectedOutput = "dlrow olleH" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {"-r", "text",inputFile.toString()};
+
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
 }
