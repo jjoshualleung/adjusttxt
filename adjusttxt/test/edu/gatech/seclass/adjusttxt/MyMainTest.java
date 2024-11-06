@@ -1738,20 +1738,26 @@ public class MyMainTest {
     }
 
     /*
-     * Frame #: 71 - Test non-empty file without options
+     * Frame #: 71 - Involve all options with remove empty line present
      */
     @Test
     public void adjusttxtTest71() {
-        String input = "Hello world" + System.lineSeparator();
+        String input = "Hello" + System.lineSeparator() //1
+                + System.lineSeparator() // 2
+                + "world" + System.lineSeparator() // 3
+                + "wow" + System.lineSeparator() // 4
+                + System.lineSeparator() // 5
+                + "happy" + System.lineSeparator(); // 6
 
-        String expectedOutput = "Hello world" + System.lineSeparator();
+        String expected = "##olleH" + System.lineSeparator()
+                + "##dlorw" + System.lineSeparator();
 
         Path inputFile = createFile(input);
-        String[] args = {inputFile.toString()};
+        String[] args = {"-s", "0", "-x", "-p", "##", "-r", "text", inputFile.toString()};
         Main.main(args);
 
-        Assertions.assertEquals(expectedOutput, capture.stdout());
         Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(expected, capture.stdout());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
 }
