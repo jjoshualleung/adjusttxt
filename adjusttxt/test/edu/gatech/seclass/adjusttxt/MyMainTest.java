@@ -1732,8 +1732,8 @@ public class MyMainTest {
         String[] args = {"-x", inputFile.toString()};
         Main.main(args);
 
-        Assertions.assertEquals(expectedOutput, capture.stderr());
-        Assertions.assertTrue(capture.stdout().isEmpty());
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
 }
