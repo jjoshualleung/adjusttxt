@@ -1760,4 +1760,20 @@ public class MyMainTest {
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
 
+    /*
+     * Frame #: 72 - Test input file with a empty line
+     */
+    @Test
+    public void adjusttxtTest72() {
+        String input = System.lineSeparator();
+        String expected = "";
+
+        Path inputFile = createFile(input);
+        String[] args = {"-x", "-p", "prefix", inputFile.toString()};
+        Main.main(args);
+
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(expected, capture.stdout());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
 }
