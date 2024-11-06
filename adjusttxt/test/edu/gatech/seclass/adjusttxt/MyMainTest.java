@@ -196,14 +196,14 @@ public class MyMainTest {
     }
 
     /*
-     * Frame #: 9 - Remove empty lines with missing parameter
+     * Frame #: 9 - Remove empty lines option with string parameter
      */
     @Test
     public void adjusttxtTest9() {
         String input = "Hello" + System.lineSeparator() + System.lineSeparator() + "world" + System.lineSeparator();
         Path inputFile = createFile(input);
 
-        String[] args = {"-x", inputFile.toString()};
+        String[] args = {"-x", "remove", inputFile.toString()};
         Main.main(args);
 
         String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
