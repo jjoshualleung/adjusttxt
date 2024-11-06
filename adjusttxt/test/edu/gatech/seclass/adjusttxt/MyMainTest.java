@@ -1643,7 +1643,7 @@ public class MyMainTest {
 
         Path inputFile = createFile(input);
 
-        String[] args = {"-p","-x",inputFile.toString()};
+        String[] args = {"-p", "-x", inputFile.toString()};
 
         Main.main(args);
 
@@ -1685,7 +1685,7 @@ public class MyMainTest {
 
         Path inputFile = createFile(input);
 
-        String[] args = {"-r", "words", "-r", "text",inputFile.toString()};
+        String[] args = {"-r", "words", "-r", "text", inputFile.toString()};
 
         Main.main(args);
 
@@ -1705,7 +1705,7 @@ public class MyMainTest {
 
         Path inputFile = createFile(input);
 
-        String[] args = {"-p", "Ms.", "-p", "Mr.",inputFile.toString()};
+        String[] args = {"-p", "Ms.", "-p", "Mr.", inputFile.toString()};
 
         Main.main(args);
 
@@ -1746,8 +1746,7 @@ public class MyMainTest {
                 + System.lineSeparator() // 2
                 + "world" + System.lineSeparator() // 3
                 + "wow" + System.lineSeparator() // 4
-                + System.lineSeparator() // 5
-                + "happy" + System.lineSeparator(); // 6
+                + System.lineSeparator(); // 5
 
         String expected = "##olleH" + System.lineSeparator()
                 + "##dlorw" + System.lineSeparator();
@@ -1760,4 +1759,28 @@ public class MyMainTest {
         Assertions.assertEquals(expected, capture.stdout());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
+
+    /*
+     * Frame #: 72 - Test skip lines and remove empty line
+     */
+    @Test
+    public void adjusttxtTest72() {
+        String input = "Hello" + System.lineSeparator() //1
+                + System.lineSeparator() // 2
+                + "world" + System.lineSeparator() // 3
+                + "wow" + System.lineSeparator() // 4
+                + System.lineSeparator(); // 5
+
+        String expected = "Hello" + System.lineSeparator()
+                + "world" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+        String[] args = {"-s", "0", "-x", inputFile.toString()};
+        Main.main(args);
+
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(expected, capture.stdout());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
+
 }
