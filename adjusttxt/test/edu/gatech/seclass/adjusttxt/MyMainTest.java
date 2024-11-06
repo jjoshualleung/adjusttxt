@@ -1744,11 +1744,13 @@ public class MyMainTest {
     public void adjusttxtTest71() {
         String input = "Hello world" + System.lineSeparator();
 
+        String expectedOutput = "Hello world" + System.lineSeparator();
+
         Path inputFile = createFile(input);
         String[] args = {inputFile.toString()};
         Main.main(args);
 
-        Assertions.assertTrue(capture.stdout().isEmpty());
+        Assertions.assertEquals(expectedOutput, capture.stdout());
         Assertions.assertTrue(capture.stderr().isEmpty());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
