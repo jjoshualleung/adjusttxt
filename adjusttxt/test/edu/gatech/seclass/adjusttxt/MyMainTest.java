@@ -1761,15 +1761,17 @@ public class MyMainTest {
     }
 
     /*
-     * Frame #: 72 - Test input file with a empty line
+     * Frame #: 72 - Test individual -s option with parameter 0
      */
     @Test
     public void adjusttxtTest72() {
-        String input = System.lineSeparator();
-        String expected = "";
+        String input = "Hey" + System.lineSeparator()
+        + "Hello" + System.lineSeparator();
+
+        String expected = "Hey" + System.lineSeparator();
 
         Path inputFile = createFile(input);
-        String[] args = {"-x", "-p", "prefix", inputFile.toString()};
+        String[] args = {"-s", "0", inputFile.toString()};
         Main.main(args);
 
         Assertions.assertTrue(capture.stderr().isEmpty());
