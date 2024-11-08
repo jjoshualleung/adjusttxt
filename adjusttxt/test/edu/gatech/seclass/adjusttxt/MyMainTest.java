@@ -1781,4 +1781,22 @@ public class MyMainTest {
         Assertions.assertTrue(capture.stderr().isEmpty());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
+
+    /*
+     * Frame #: 73 - Put parameter in front of -w option
+     */
+    @Test
+    public void adjusttxtTest73() {
+        String input = "My name is Joshua" + System.lineSeparator();
+
+        String expectedError = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {"all", "-w", inputFile.toString()};
+        Main.main(args);
+
+        Assertions.assertTrue(capture.stderr().contains(expectedError));
+        Assertions.assertTrue(capture.stdout().isEmpty());
+    }
 }
