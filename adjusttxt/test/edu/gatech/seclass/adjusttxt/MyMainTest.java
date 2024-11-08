@@ -1761,21 +1761,24 @@ public class MyMainTest {
     }
 
     /*
-     * Frame #: 72 - Test individual -s option with parameter 0
+     * Frame #: 72 - Test -p option individually
      */
     @Test
     public void adjusttxtTest72() {
-        String input = "Hey" + System.lineSeparator()
-        + "Hello" + System.lineSeparator();
+        String input = "Hello" + System.lineSeparator()
+                + "Thanksgiving" + System.lineSeparator()
+                + "cat \"test\" > sample.txt" + System.lineSeparator();
 
-        String expected = "Hey" + System.lineSeparator();
+        String expected = "$$Hello" + System.lineSeparator()
+                + "$$Thanksgiving" + System.lineSeparator()
+                + "$$cat \"test\" > sample.txt" + System.lineSeparator();
 
         Path inputFile = createFile(input);
-        String[] args = {"-s", "0", inputFile.toString()};
+        String[] args = {"-p", "$$", inputFile.toString()};
         Main.main(args);
 
-        Assertions.assertTrue(capture.stderr().isEmpty());
         Assertions.assertEquals(expected, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
 }
