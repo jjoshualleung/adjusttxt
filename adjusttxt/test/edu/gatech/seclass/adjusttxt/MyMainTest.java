@@ -1799,4 +1799,32 @@ public class MyMainTest {
         Assertions.assertTrue(capture.stderr().contains(expectedError));
         Assertions.assertTrue(capture.stdout().isEmpty());
     }
+
+    /*
+     * Frame #: 74 - Test -x option with other options in correct order
+     */
+    @Test
+    public void adjusttxtTest74() {
+        String input = "My name is Joshua" + System.lineSeparator() // 1
+                + "Hello world" + System.lineSeparator() // 2
+                + System.lineSeparator() // 3
+                + "How are you?" + System.lineSeparator(); // 4
+
+        String expectedOutput = "Mr.Joshua is name My" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "0",
+                "-x",
+                "-r", "words",
+                "-p", "Mr.",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
 }
