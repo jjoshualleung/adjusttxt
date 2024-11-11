@@ -1818,6 +1818,7 @@ public class MyMainTest {
                 "-s", "0",
                 "-x",
                 "-r", "text",
+                "-x",
                 "-p", "Mr.",
                 inputFile.toString()
         };
