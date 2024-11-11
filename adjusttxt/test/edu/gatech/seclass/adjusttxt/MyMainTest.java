@@ -1830,27 +1830,17 @@ public class MyMainTest {
     }
 
     /*
-     * Frame #: 75 - Test multiple prefix
+     * Frame #: 75 - Test -w option with leading parameter
      */
     @Test
     public void adjusttxtTest75() {
-        String input = "Hello world" + System.lineSeparator() // 1
-                + "My name is Joshua" + System.lineSeparator() // 2
-                + System.lineSeparator(); // 3
+        String input = "  My name is Joshua" + System.lineSeparator(); // 1
 
-        String expectedOutput = "Mr.auhsoJ si eman yM" + System.lineSeparator();
+        String expectedOutput = "My name is Joshua" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
-        String[] args = {
-                "-s", "1",
-                "-x",
-                "-p", "Mr",
-                "-r", "text",
-                "-p", "Mr.",
-                "-x",
-                inputFile.toString()
-        };
+        String[] args = {"-w", "leading", inputFile.toString()};
         Main.main(args);
 
         Assertions.assertEquals(expectedOutput, capture.stdout());
