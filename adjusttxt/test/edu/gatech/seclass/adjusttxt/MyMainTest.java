@@ -1830,17 +1830,23 @@ public class MyMainTest {
     }
 
     /*
-     * Frame #: 75 - Prefix empty string
+     * Frame #: 75 - Test -x option with other options in correct order with odd skip lines
      */
     @Test
     public void adjusttxtTest75() {
-        String input = System.lineSeparator();
+        String input = "Hello world" + System.lineSeparator() // 1
+                + "My name is Joshua" + System.lineSeparator() // 2
+                + System.lineSeparator(); // 3
 
-        String expectedOutput = "Mr." + System.lineSeparator();
+        String expectedOutput = "Mr.auhsoJ si eman yM" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
         String[] args = {
+                "-s", "1",
+                "-x",
+                "-r", "text",
+                "-x",
                 "-p", "Mr.",
                 inputFile.toString()
         };
