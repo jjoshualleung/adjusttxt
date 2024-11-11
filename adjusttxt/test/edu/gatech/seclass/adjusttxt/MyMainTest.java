@@ -1830,7 +1830,7 @@ public class MyMainTest {
     }
 
     /*
-     * Frame #: 75 - Test -x option with other options in correct order with odd skip lines
+     * Frame #: 75 - Test multiple prefix
      */
     @Test
     public void adjusttxtTest75() {
@@ -1845,9 +1845,10 @@ public class MyMainTest {
         String[] args = {
                 "-s", "1",
                 "-x",
+                "-p", "Mr",
                 "-r", "text",
-                "-x",
                 "-p", "Mr.",
+                "-x",
                 inputFile.toString()
         };
         Main.main(args);
