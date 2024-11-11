@@ -1810,14 +1810,14 @@ public class MyMainTest {
                 + System.lineSeparator() // 3
                 + "How are you?" + System.lineSeparator(); // 4
 
-        String expectedOutput = "Mr.Joshua is name My" + System.lineSeparator();
+        String expectedOutput = "Mr.auhsoJ si eman yM" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
         String[] args = {
                 "-s", "0",
                 "-x",
-                "-r", "words",
+                "-r", "text",
                 "-p", "Mr.",
                 inputFile.toString()
         };
