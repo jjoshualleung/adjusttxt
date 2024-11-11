@@ -1828,4 +1828,33 @@ public class MyMainTest {
         Assertions.assertTrue(capture.stderr().isEmpty());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
+
+    /*
+     * Frame #: 75 - Test multiple -r options
+     */
+    @Test
+    public void adjusttxtTest75() {
+        String input = "My name is Joshua" + System.lineSeparator() // 1
+                + "Hello world" + System.lineSeparator() // 2
+                + System.lineSeparator() // 3
+                + "How are you?" + System.lineSeparator(); // 4
+
+        String expectedOutput = "Mr.auhsoJ si eman yM" + System.lineSeparator();
+
+        Path inputFile = createFile(input);
+
+        String[] args = {
+                "-s", "0",
+                "-x",
+                "-r", "words",
+                "-r", "text",
+                "-p", "Mr.",
+                inputFile.toString()
+        };
+        Main.main(args);
+
+        Assertions.assertEquals(expectedOutput, capture.stdout());
+        Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(input, getFileContent(inputFile));
+    }
 }
