@@ -1830,17 +1830,17 @@ public class MyMainTest {
     }
 
     /*
-     * Frame #: 75 - Test -w option with leading parameter
+     * Frame #: 75 - Test -w option with trailing parameter
      */
     @Test
     public void adjusttxtTest75() {
-        String input = "  My name is Joshua" + System.lineSeparator(); // 1
+        String input = "My name is Joshua  " + System.lineSeparator(); // 1
 
         String expectedOutput = "My name is Joshua" + System.lineSeparator();
 
         Path inputFile = createFile(input);
 
-        String[] args = {"-w", "leading", inputFile.toString()};
+        String[] args = {"-w", "trailing", inputFile.toString()};
         Main.main(args);
 
         Assertions.assertEquals(expectedOutput, capture.stdout());
