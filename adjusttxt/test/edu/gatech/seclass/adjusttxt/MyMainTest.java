@@ -1833,7 +1833,7 @@ public class MyMainTest {
      * Frame #: 75 - Make use of example test case
      */
     @Test
-    public void exampleTest11() {
+    public void adjusttxtTest75() {
         String input = "    This is Joshua" + System.lineSeparator()
                 + "    I go to school by bus" + System.lineSeparator()
                 + "      what is your name" + System.lineSeparator();
