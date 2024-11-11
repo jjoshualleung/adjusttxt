@@ -1830,21 +1830,22 @@ public class MyMainTest {
     }
 
     /*
-     * Frame #: 75 - Test -w option with all parameter
+     * Frame #: 75 - Make use of example test case
      */
     @Test
-    public void adjusttxtTest75() {
-        String input = "H e l l o" + System.lineSeparator(); // 1
-
-        String expectedOutput = "Hello" + System.lineSeparator();
+    public void exampleTest11() {
+        String input = "    This is Joshua" + System.lineSeparator()
+                + "    I go to school by bus" + System.lineSeparator()
+                + "      what is your name" + System.lineSeparator();
+        String expected = "##auhsoJ si sihT" + System.lineSeparator()
+                + "##eman ruoy si tahw" + System.lineSeparator();
 
         Path inputFile = createFile(input);
-
-        String[] args = {"-w", "all", inputFile.toString()};
+        String[] args = {"-s", "0", "-w", "leading", "-p", "##", "-r", "text", inputFile.toString()};
         Main.main(args);
 
-        Assertions.assertEquals(expectedOutput, capture.stdout());
         Assertions.assertTrue(capture.stderr().isEmpty());
+        Assertions.assertEquals(expected, capture.stdout());
         Assertions.assertEquals(input, getFileContent(inputFile));
     }
 }
