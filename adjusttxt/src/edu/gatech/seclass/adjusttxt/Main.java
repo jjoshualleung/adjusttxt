@@ -1,5 +1,6 @@
 package edu.gatech.seclass.adjusttxt;
-import java.util.ArrayList;
+import java.util.*;
+
 public class Main {
     // Empty Main class for compiling Individual Project
     // During Deliverable 1 and Deliverable 2, DO NOT ALTER THIS CLASS or implement it
@@ -15,9 +16,34 @@ public class Main {
 
         // Add each of the argument to the list
         for (int i = 0; i < args.length; i++) {
+            // Verify the existent of the options with the corresponding parameter string
+            // Use HashMap for verification
+            optionsLookUp(args[i]);
+            // if exist --> then process
+            // otherwise --> throw error message
             argsList.add(args[i]);
         }
+    }
 
+    /**
+     * Aim to verify arguments existent
+     * @param options
+     */
+    private static void optionsLookUp(String options) {
+        // Create a hashmap
+        HashMap<String, List<String>> optionsMap = new HashMap<>();
+
+        List<String> skipParam = Arrays.asList("0", "1");
+        List<String> whitespaceParam = Arrays.asList("leading", "trailing", "all");
+        List<String> reverseParam = Arrays.asList("words", "text");
+        List<String> emptyLineParam = Collections.emptyList();
+
+        // Map option to its parameters
+        optionsMap.put("-s", skipParam);
+        optionsMap.put("-w", whitespaceParam);
+        optionsMap.put("-x", emptyLineParam);
+        optionsMap.put("-r", reverseParam);
+        optionsMap.put("-p", null);
     }
 
     private static void usage() {
