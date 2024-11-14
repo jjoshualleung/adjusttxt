@@ -23,6 +23,12 @@ public class Main {
             // otherwise --> throw error message
             argsList.add(args[i]);
         }
+
+        // Check -x and -w are not presemt at the same time
+        // if present should throw error message
+        if (argsList.contains("-x") && argsList.contains("-w")) {
+            usage();
+        }
     }
 
     /**
