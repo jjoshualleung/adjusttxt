@@ -13,15 +13,16 @@ public class Main {
 
         // if not empty --> Create an array list to store the args
         ArrayList<String> argsList = new ArrayList<>();
-
+        // Create the options map
+        HashMap<String, List<String>> optionsMap = optionsTable();
         // Add each of the argument to the list
-        for (int i = 0; i < args.length; i++) {
+        for (String arg : args) {
             // Verify the existent of the options with the corresponding parameter string
-            // Use HashMap for verification
-            optionsLookUp(args[i]);
-            // if exist --> then process
-            // otherwise --> throw error message
-            argsList.add(args[i]);
+            if (!verifyOptionsLookUp(optionsMap, arg)) {
+                usage();
+                return;
+            }
+            argsList.add(arg);
         }
 
         // Check -x and -w are not presemt at the same time
@@ -32,10 +33,20 @@ public class Main {
     }
 
     /**
-     * Aim to verify arguments existent
-     * @param options
+     * @param optionsMap
+     * @param option
+     * @return
      */
-    private static void optionsLookUp(String options) {
+    private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
+        optionsMap.containsKey(option);
+        return false;
+    }
+
+    /**
+     * Create a hashmap
+     * @return optionsMap
+     */
+    public static HashMap<String, List<String>> optionsTable() {
         // Create a hashmap
         HashMap<String, List<String>> optionsMap = new HashMap<>();
 
@@ -50,6 +61,8 @@ public class Main {
         optionsMap.put("-x", emptyLineParam);
         optionsMap.put("-r", reverseParam);
         optionsMap.put("-p", null);
+
+        return optionsMap;
     }
 
     private static void usage() {
