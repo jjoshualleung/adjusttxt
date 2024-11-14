@@ -32,14 +32,8 @@ public class Main {
         }
     }
 
-    /**
-     * @param optionsMap
-     * @param option
-     * @return
-     */
     private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
-        optionsMap.containsKey(option);
-        return false;
+        return optionsMap.containsKey(option);
     }
 
     /**
