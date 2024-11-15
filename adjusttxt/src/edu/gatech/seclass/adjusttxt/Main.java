@@ -38,14 +38,12 @@ public class Main {
         }
 
         // Verify the last argument is a valid text file
-        File filePath = new File(argsList.get(-1));
+        String filePath = argsList.get(-1);
+        File file = new File(filePath);
 
-        if (!filePath.exists()) {
+        // Verify the file path exist
+        if (!file.exists() || !file.isFile()) {
             usage();
-            return;
-        }
-
-        if (filePath.length() == 0) {
             return;
         }
 
@@ -117,40 +115,40 @@ public class Main {
 
         try {
             if (skipEven) {
-                skipEvenMethod(true, filePath);
+                skipEvenMethod(true, file);
             }
             if (skipOdd) {
-                skipOddMethod(true, filePath);
+                skipOddMethod(true, file);
             }
             if (removeLeading) {
-                removeLeadingSpaceMethod(true, filePath);
+                removeLeadingSpaceMethod(true, file);
             }
             if (removeTrailing) {
-                removeTrailingSpaceMethod(true, filePath);
+                removeTrailingSpaceMethod(true, file);
             }
             if (removeAll) {
-                removeAllSpaceMethod(true, filePath);
+                removeAllSpaceMethod(true, file);
             }
             if (removeEmptyLine) {
-                removeEmptyLineMethod(true, filePath);
+                removeEmptyLineMethod(true, file);
             }
             if (reverseWords) {
-                reverseWordsMethod(true, filePath);
+                reverseWordsMethod(true, file);
             }
             if (reverseText) {
-                reverseTextMethod(true, filePath);
+                reverseTextMethod(true, file);
             }
             if (addPrfix) {
-                addPrefixMethod(true, prefix, filePath);
+                addPrefixMethod(true, prefix, file);
             }
         } catch (IOException e) {
             usage();
         }
     }
 
-    public static void skipEvenMethod(boolean skipEven, File filePath) throws IOException {
+    public static List<String> skipEvenMethod(boolean skipEven, File file) throws IOException {
 
-        List<String> fileLines = Files.readAllLines(filePath.toPath());
+        List<String> fileLines = Files.readAllLines(file.toPath());
         List<String> outputLines = new ArrayList<>();
 
         for (int i = 0; i < fileLines.size(); i++) {
@@ -162,11 +160,11 @@ public class Main {
             outputLines.add(fileLines.get(i));
         }
 
-        Files.write(filePath.toPath(), outputLines);
+        return outputLines;
     }
 
-    public static void skipOddMethod(boolean skipOdd, File filePath) throws IOException {
-        List<String> fileLines = Files.readAllLines(filePath.toPath());
+    public static void skipOddMethod(boolean skipOdd, File file) throws IOException {
+        List<String> fileLines = Files.readAllLines(file.toPath());
 
         List<String> outputLines = new ArrayList<>();
 
@@ -178,11 +176,11 @@ public class Main {
             // add line to output file
             outputLines.add(fileLines.get(i));
         }
-        Files.write(filePath.toPath(), outputLines);
+        Files.write(file.toPath(), outputLines);
     }
 
-    public static void removeLeadingSpaceMethod(boolean removeLeading, File filePath) throws IOException {
-        List<String> fileLines = Files.readAllLines(filePath.toPath());
+    public static void removeLeadingSpaceMethod(boolean removeLeading, File file) throws IOException {
+        List<String> fileLines = Files.readAllLines(file.toPath());
         List<String> outputLines = new ArrayList<>();
 
         // for each line in the file
@@ -192,11 +190,11 @@ public class Main {
                 outputLines.add(line.stripLeading());
             }
         }
-        Files.write(filePath.toPath(), outputLines);
+        Files.write(file.toPath(), outputLines);
     }
 
-    public static void removeTrailingSpaceMethod(boolean removeTrailing, File filePath) throws IOException {
-        List<String> fileLines = Files.readAllLines(filePath.toPath());
+    public static void removeTrailingSpaceMethod(boolean removeTrailing, File file) throws IOException {
+        List<String> fileLines = Files.readAllLines(file.toPath());
         List<String> outputLines = new ArrayList<>();
 
         // for each line in the file
@@ -206,11 +204,11 @@ public class Main {
                 outputLines.add(line.stripTrailing());
             }
         }
-        Files.write(filePath.toPath(), outputLines);
+        Files.write(file.toPath(), outputLines);
     }
 
-    public static void removeAllSpaceMethod(boolean removeTrailing, File filePath) throws IOException {
-        List<String> fileLines = Files.readAllLines(filePath.toPath());
+    public static void removeAllSpaceMethod(boolean removeTrailing, File file) throws IOException {
+        List<String> fileLines = Files.readAllLines(file.toPath());
         List<String> outputLines = new ArrayList<>();
 
         // for each line in the file
@@ -221,11 +219,11 @@ public class Main {
                 outputLines.add(line.replace(" ", ""));
             }
         }
-        Files.write(filePath.toPath(), outputLines);
+        Files.write(file.toPath(), outputLines);
     }
 
-    public static void removeEmptyLineMethod(boolean removeEmptyLine, File filePath) throws IOException {
-        List<String> fileLines = Files.readAllLines(filePath.toPath());
+    public static void removeEmptyLineMethod(boolean removeEmptyLine, File file) throws IOException {
+        List<String> fileLines = Files.readAllLines(file.toPath());
         List<String> outputLines = new ArrayList<>();
 
         if (removeEmptyLine) {
@@ -239,11 +237,11 @@ public class Main {
                 }
             }
         }
-        Files.write(filePath.toPath(), outputLines);
+        Files.write(file.toPath(), outputLines);
     }
 
-    public static void reverseWordsMethod(boolean reverseWords, File filePath) throws IOException {
-        List<String> fileLines = Files.readAllLines(filePath.toPath());
+    public static void reverseWordsMethod(boolean reverseWords, File file) throws IOException {
+        List<String> fileLines = Files.readAllLines(file.toPath());
         List<String> outputLines = new ArrayList<>();
 
         if (reverseWords) {
@@ -258,11 +256,11 @@ public class Main {
         } else {
             outputLines = fileLines;
         }
-        Files.write(filePath.toPath(), outputLines);
+        Files.write(file.toPath(), outputLines);
     }
 
-    public static void reverseTextMethod(boolean reverseText, File filePath) throws IOException {
-        List<String> fileLines = Files.readAllLines(filePath.toPath());
+    public static void reverseTextMethod(boolean reverseText, File file) throws IOException {
+        List<String> fileLines = Files.readAllLines(file.toPath());
         List<String> outputLines = new ArrayList<>();
 
         if (reverseText) {
@@ -274,11 +272,11 @@ public class Main {
         } else {
             outputLines = fileLines;
         }
-        Files.write(filePath.toPath(), outputLines);
+        Files.write(file.toPath(), outputLines);
     }
 
-    public static void addPrefixMethod(boolean addPrefix, String prefix, File filePath) throws IOException {
-        List<String> fileLines = Files.readAllLines(filePath.toPath());
+    public static void addPrefixMethod(boolean addPrefix, String prefix, File file) throws IOException {
+        List<String> fileLines = Files.readAllLines(file.toPath());
         List<String> outputLines = new ArrayList<>();
 
         if (addPrefix) {
@@ -289,7 +287,7 @@ public class Main {
         } else {
             outputLines = fileLines;
         }
-        Files.write(filePath.toPath(), outputLines);
+        Files.write(file.toPath(), outputLines);
     }
 
     private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
