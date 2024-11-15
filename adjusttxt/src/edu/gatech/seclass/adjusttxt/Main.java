@@ -59,6 +59,7 @@ public class Main {
         boolean reverseText = false;
         boolean addPrfix = false;
 
+        String prefix = null;
         for (int i = 0; i < argsList.size(); i++) {
             String arg = argsList.get(i);
             if (arg.equals("-s") && i + 1 < argsList.size() && argsList.get(i + 1).equals("0")) {
@@ -109,6 +110,7 @@ public class Main {
 
             if (arg.equals("-p") && i + 1 < argsList.size()) {
                 addPrfix = true;
+                prefix = argsList.get(i + 1);
                 i++;
             }
         }
@@ -137,6 +139,9 @@ public class Main {
             }
             if (reverseText) {
                 reverseTextMethod(true, filePath);
+            }
+            if (addPrfix) {
+                addPrefixMethod(true, prefix, filePath);
             }
         } catch (IOException e) {
             usage();
