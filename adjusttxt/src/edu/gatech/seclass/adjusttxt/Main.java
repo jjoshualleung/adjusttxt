@@ -1,4 +1,6 @@
 package edu.gatech.seclass.adjusttxt;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 public class Main {
@@ -28,6 +30,12 @@ public class Main {
         // Check -x and -w are not presemt at the same time
         // if present should throw error message
         if (argsList.contains("-x") && argsList.contains("-w")) {
+            usage();
+        }
+
+        // Verify the last argument is a valid text file
+        String filePath = argsList.get(argsList.size() - 1);
+        if (!Files.isReadable(Path.of(filePath))) {
             usage();
         }
     }
