@@ -110,6 +110,35 @@ public class Main {
                 i++;
             }
         }
+
+        try {
+            if (skipEven) {
+                skipEvenMethod(true, filePath);
+            }
+            if (skipOdd) {
+                skipOddMethod(true, filePath);
+            }
+            if (removeLeading) {
+                removeLeadingSpaceMethod(true, filePath);
+            }
+            if (removeTrailing) {
+                removeTrailingSpaceMethod(true, filePath);
+            }
+            if (removeAll) {
+                removeAllSpaceMethod(true, filePath);
+            }
+            if (removeEmptyLine) {
+                removeEmptyLineMethod(true, filePath);
+            }
+            if (reverseWords) {
+                reverseWordsMethod(true, filePath);
+            }
+            if (reverseText) {
+                reverseTextMethod(true, filePath);
+            }
+        } catch (IOException e) {
+            usage();
+        }
     }
 
     public static void skipEvenMethod(boolean skipEven, File filePath) throws IOException {
