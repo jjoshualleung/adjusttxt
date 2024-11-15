@@ -206,6 +206,23 @@ public class Main {
         Files.write(filePath.toPath(), outputLines);
     }
 
+    public static void reverseWordsMethod(boolean reverseWords, File filePath) throws IOException {
+        List<String> fileLines = Files.readAllLines(filePath.toPath());
+        List<String> outputLines = new ArrayList<>();
+
+        if (reverseWords) {
+            for (String line : fileLines) {
+                String[] words = line.split(" ");
+                StringBuilder reversedLine = new StringBuilder();
+                for (int word = words.length - 1; word >= 0; word--) {
+                    reversedLine.append((words[word]));
+                }
+                outputLines.add(reversedLine.toString());
+            }
+        }
+        Files.write(filePath.toPath(), outputLines);
+    }
+
     private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
         return optionsMap.containsKey(option);
     }
