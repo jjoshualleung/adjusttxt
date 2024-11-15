@@ -113,6 +113,18 @@ public class Main {
             }
         }
 
+        List<String> outputLines;
+        try {
+            outputLines = Files.readAllLines(file.toPath());
+        } catch (IOException e) {
+            usage();
+            return;
+        }
+
+        if (outputLines.isEmpty()) {
+            return;
+        }
+
         try {
             if (skipEven) {
                 skipEvenMethod(true, file);
