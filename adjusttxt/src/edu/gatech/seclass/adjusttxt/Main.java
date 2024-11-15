@@ -49,13 +49,55 @@ public class Main {
 
         boolean skipEven = false;
         boolean skipOdd = false;
+        boolean removeLeading = false;
+        boolean removeTrailing = false;
+        boolean removeAll = false;
+        boolean removeEmptyLine = false;
+        boolean reverseWords = false;
+        boolean reverseText = false;
+        boolean addPrfix = false;
 
         for (int i = 0; i < argsList.size(); i++) {
             String arg = argsList.get(i);
             if (arg.equals("-s") && i + 1 < argsList.size() && argsList.get(i + 1).equals("0")) {
                 skipEven = true;
+                // move the next argument
+                i++;
             } else {
                 skipOdd = true;
+                // move the next argument
+                i++;
+            }
+
+            if (arg.equals("-x") && i + 1 < argsList.size()) {
+                if (argsList.get(i + 1).equals("leading")) {
+                    removeLeading = true;
+                    i++;
+                } else if (argsList.get(i + 1).equals("trailing")) {
+                    removeTrailing = true;
+                    i++;
+                } else {
+                    removeAll = true;
+                    i++;
+                }
+            }
+
+            if (arg.equals("-w") && i + 1 < argsList.size()) {
+                removeEmptyLine = true;
+                i++;
+            }
+
+            if (arg.equals("-r") && i + 1 < argsList.size()) {
+                if (argsList.get(i + 1).equals("words")) {
+                    reverseWords = true;
+                } else if (argsList.get(i + 1).equals("text")) {
+                    reverseText = true;
+                }
+            }
+
+            if (arg.equals("-p") && i + 1 < argsList.size()) {
+                addPrfix = true;
+                i++;
             }
         }
     }
