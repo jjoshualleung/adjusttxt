@@ -47,6 +47,17 @@ public class Main {
             return;
         }
 
+        boolean skipEven = false;
+        boolean skipOdd = false;
+
+        for (int i = 0; i < argsList.size(); i++) {
+            String arg = argsList.get(i);
+            if (arg.equals("-s") && i + 1 < argsList.size() && argsList.get(i + 1).equals("0")) {
+                skipEven = true;
+            } else {
+                skipOdd = true;
+            }
+        }
     }
 
     private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
