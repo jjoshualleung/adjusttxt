@@ -60,10 +60,12 @@ public class Main {
         for (int i = 0; i < argsList.size(); i++) {
             String arg = argsList.get(i);
             if (arg.equals("-s") && i + 1 < argsList.size() && argsList.get(i + 1).equals("0")) {
+                skipOdd = false;
                 skipEven = true;
                 // move the next argument
                 i++;
             } else {
+                skipEven = false;
                 skipOdd = true;
                 // move the next argument
                 i++;
@@ -71,12 +73,18 @@ public class Main {
 
             if (arg.equals("-x") && i + 1 < argsList.size()) {
                 if (argsList.get(i + 1).equals("leading")) {
+                    removeTrailing = false;
+                    removeAll = false;
                     removeLeading = true;
                     i++;
                 } else if (argsList.get(i + 1).equals("trailing")) {
+                    removeAll = false;
+                    removeLeading = false;
                     removeTrailing = true;
                     i++;
                 } else {
+                    removeLeading = false;
+                    removeTrailing = false;
                     removeAll = true;
                     i++;
                 }
@@ -89,8 +97,10 @@ public class Main {
 
             if (arg.equals("-r") && i + 1 < argsList.size()) {
                 if (argsList.get(i + 1).equals("words")) {
+                    reverseText = false;
                     reverseWords = true;
                 } else if (argsList.get(i + 1).equals("text")) {
+                    reverseWords = false;
                     reverseText = true;
                 }
             }
