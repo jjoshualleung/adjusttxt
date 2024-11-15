@@ -102,6 +102,39 @@ public class Main {
         }
     }
 
+    public static void skipEvenMethod(boolean skipEven, File filePath) throws IOException {
+
+        List<String> fileLines = Files.readAllLines(filePath.toPath());
+        List<String> outputLines = new ArrayList<>();
+
+        for (int i = 0; i < fileLines.size(); i++) {
+            // skip even line
+            if (skipEven && i % 2 == 0) {
+                continue;
+            }
+            // add line to output file
+            outputLines.add(fileLines.get(i));
+        }
+
+        Files.write(filePath.toPath(), outputLines);
+    }
+
+    public static void skipOddMethod(boolean skipOdd, File filePath) throws IOException {
+        List<String> fileLines = Files.readAllLines(filePath.toPath());
+
+        List<String> outputLines = new ArrayList<>();
+
+        for (int i = 0; i < fileLines.size(); i++) {
+            // skip odd line
+            if (skipOdd && i % 2 != 0) {
+                continue;
+            }
+            // add line to output file
+            outputLines.add(fileLines.get(i));
+        }
+        Files.write(filePath.toPath(), outputLines);
+    }
+
     private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
         return optionsMap.containsKey(option);
     }
