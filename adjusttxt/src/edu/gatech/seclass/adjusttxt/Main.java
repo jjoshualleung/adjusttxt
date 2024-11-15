@@ -135,6 +135,49 @@ public class Main {
         Files.write(filePath.toPath(), outputLines);
     }
 
+    public static void removeLeadingSpaceMethod(boolean removeLeading, File filePath) throws IOException {
+        List<String> fileLines = Files.readAllLines(filePath.toPath());
+        List<String> outputLines = new ArrayList<>();
+
+        // for each line in the file
+        for (String line : fileLines) {
+            // if true then proceed
+            if (removeLeading) {
+                outputLines.add(line.stripLeading());
+            }
+        }
+        Files.write(filePath.toPath(), outputLines);
+    }
+
+    public static void removeTrailingSpaceMethod(boolean removeTrailing, File filePath) throws IOException {
+        List<String> fileLines = Files.readAllLines(filePath.toPath());
+        List<String> outputLines = new ArrayList<>();
+
+        // for each line in the file
+        for (String line : fileLines) {
+            // if true then proceed
+            if (removeTrailing) {
+                outputLines.add(line.stripTrailing());
+            }
+        }
+        Files.write(filePath.toPath(), outputLines);
+    }
+
+    public static void removeAllSpaceMethod(boolean removeTrailing, File filePath) throws IOException {
+        List<String> fileLines = Files.readAllLines(filePath.toPath());
+        List<String> outputLines = new ArrayList<>();
+
+        // for each line in the file
+        for (String line : fileLines) {
+            // if true then proceed
+            if (removeTrailing) {
+                // Remove all the space
+                outputLines.add(line.replace(" ", ""));
+            }
+        }
+        Files.write(filePath.toPath(), outputLines);
+    }
+
     private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
         return optionsMap.containsKey(option);
     }
