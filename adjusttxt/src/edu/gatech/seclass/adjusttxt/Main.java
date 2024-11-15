@@ -13,6 +13,7 @@ public class Main {
         // if argument is empty --> print error message
         if (args.length == 0) {
             usage();
+            return;
         }
 
         // if not empty --> Create an array list to store the args
@@ -33,6 +34,7 @@ public class Main {
         // if present should throw error message
         if (argsList.contains("-x") && argsList.contains("-w")) {
             usage();
+            return;
         }
 
         // Verify the last argument is a valid text file
