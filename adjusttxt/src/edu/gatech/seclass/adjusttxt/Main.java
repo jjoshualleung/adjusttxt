@@ -219,6 +219,8 @@ public class Main {
                 }
                 outputLines.add(reversedLine.toString());
             }
+        } else {
+            outputLines = fileLines;
         }
         Files.write(filePath.toPath(), outputLines);
     }
