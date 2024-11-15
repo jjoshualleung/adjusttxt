@@ -272,6 +272,21 @@ public class Main {
         Files.write(filePath.toPath(), outputLines);
     }
 
+    public static void addPrefixMethod(boolean addPrefix, String prefix, File filePath) throws IOException {
+        List<String> fileLines = Files.readAllLines(filePath.toPath());
+        List<String> outputLines = new ArrayList<>();
+
+        if (addPrefix) {
+            for (String line : fileLines) {
+                String prefixSentence = prefix + line;
+                outputLines.add(prefixSentence);
+            }
+        } else {
+            outputLines = fileLines;
+        }
+        Files.write(filePath.toPath(), outputLines);
+    }
+
     private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
         return optionsMap.containsKey(option);
     }
