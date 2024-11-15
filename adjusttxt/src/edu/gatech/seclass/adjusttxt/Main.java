@@ -1,4 +1,6 @@
 package edu.gatech.seclass.adjusttxt;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -34,10 +36,17 @@ public class Main {
         }
 
         // Verify the last argument is a valid text file
-        String filePath = argsList.get(argsList.size() - 1);
-        if (!Files.isReadable(Path.of(filePath))) {
+        File filePath = new File(argsList.get(-1));
+
+        if (!filePath.exists()) {
             usage();
+            return;
         }
+
+        if (filePath.length() == 0) {
+            return;
+        }
+
     }
 
     private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
