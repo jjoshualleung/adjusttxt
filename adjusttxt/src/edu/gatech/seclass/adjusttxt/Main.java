@@ -188,6 +188,24 @@ public class Main {
         Files.write(filePath.toPath(), outputLines);
     }
 
+    public static void removeEmptyLineMethod(boolean removeEmptyLine, File filePath) throws IOException {
+        List<String> fileLines = Files.readAllLines(filePath.toPath());
+        List<String> outputLines = new ArrayList<>();
+
+        if (removeEmptyLine) {
+            for (String line : fileLines) {
+                // Check trimmed line is empty afterward
+                if (line.trim().isEmpty()) {
+                    outputLines.add(line);
+                } else {
+                    // If nothing to remove, keep the original text file
+                        outputLines = fileLines;
+                }
+            }
+        }
+        Files.write(filePath.toPath(), outputLines);
+    }
+
     private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
         return optionsMap.containsKey(option);
     }
