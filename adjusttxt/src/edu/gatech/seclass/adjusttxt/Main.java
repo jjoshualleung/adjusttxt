@@ -223,6 +223,22 @@ public class Main {
         Files.write(filePath.toPath(), outputLines);
     }
 
+    public static void reverseTextMethod(boolean reverseText, File filePath) throws IOException {
+        List<String> fileLines = Files.readAllLines(filePath.toPath());
+        List<String> outputLines = new ArrayList<>();
+
+        if (reverseText) {
+            for (String line : fileLines) {
+                StringBuilder reversedLine = new StringBuilder(line);
+                String reversedText = reversedLine.reverse().toString();
+                outputLines.add(reversedText);
+            }
+        } else {
+            outputLines = fileLines;
+        }
+        Files.write(filePath.toPath(), outputLines);
+    }
+
     private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
         return optionsMap.containsKey(option);
     }
