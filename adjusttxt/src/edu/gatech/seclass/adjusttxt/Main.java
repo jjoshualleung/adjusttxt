@@ -28,26 +28,10 @@ public class Main {
             return;
         }
 
-        // if not empty --> Create an array list to store the args
-        ArrayList<String> argsList = new ArrayList<>();
+        // Convert args to a list
+        List<String> argsList = new ArrayList<>(Arrays.asList(args));
         // Create the options map
         HashMap<String, List<String>> optionsMap = optionsTable();
-        // Add each of the argument to the list
-        for (String arg : args) {
-            // Verify the existent of the options with the corresponding parameter string
-            if (!verifyOptionsLookUp(optionsMap, arg)) {
-                usage();
-                return;
-            }
-            argsList.add(arg);
-        }
-
-        // Check -x and -w are not presemt at the same time
-        // if present should throw error message
-        if (argsList.contains("-x") && argsList.contains("-w")) {
-            usage();
-            return;
-        }
 
         // Verify the last argument is a valid text file
         String filePath = argsList.get(-1);
@@ -57,6 +41,23 @@ public class Main {
         if (!file.exists() || !file.isFile()) {
             usage();
             return;
+        }
+
+        int j = 0;
+        while (j < argsList.size()) {
+            String arg = argsList.get(j);
+            // Verify the existent of the options with the corresponding parameter string
+            if (!verifyOptionsLookUp(optionsMap, arg)) {
+                usage();
+                return;
+            }
+
+            // Check -x and -w are not present at the same time
+            // if present should throw error message
+            if (argsList.contains("-x") && argsList.contains("-w")) {
+                usage();
+                return;
+            }
         }
 
         for (int i = 0; i < argsList.size(); i++) {
