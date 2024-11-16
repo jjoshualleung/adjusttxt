@@ -9,6 +9,19 @@ public class Main {
     // During Deliverable 1 and Deliverable 2, DO NOT ALTER THIS CLASS or implement it
 
     public static void main(String[] args) {
+
+        boolean skipEven = false;
+        boolean skipOdd = false;
+        boolean removeLeading = false;
+        boolean removeTrailing = false;
+        boolean removeAll = false;
+        boolean removeEmptyLine = false;
+        boolean reverseWords = false;
+        boolean reverseText = false;
+        boolean addPrfix = false;
+
+        String prefix = null;
+
         // if argument is empty --> print error message
         if (args.length == 0) {
             usage();
@@ -46,17 +59,6 @@ public class Main {
             return;
         }
 
-        boolean skipEven = false;
-        boolean skipOdd = false;
-        boolean removeLeading = false;
-        boolean removeTrailing = false;
-        boolean removeAll = false;
-        boolean removeEmptyLine = false;
-        boolean reverseWords = false;
-        boolean reverseText = false;
-        boolean addPrfix = false;
-
-        String prefix = null;
         for (int i = 0; i < argsList.size(); i++) {
             String arg = argsList.get(i);
             if (arg.equals("-s") && i + 1 < argsList.size() && argsList.get(i + 1).equals("0")) {
