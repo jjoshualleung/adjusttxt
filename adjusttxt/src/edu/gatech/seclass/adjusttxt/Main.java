@@ -33,8 +33,8 @@ public class Main {
         // Create the options map
         HashMap<String, List<String>> optionsMap = optionsTable();
 
-        // Verify the last argument is a valid text file
-        String filePath = argsList.get(-1);
+        // Extract the last element of the list as text file
+        String filePath = argsList.removeLast();
         File file = new File(filePath);
 
         // Verify the file path exist
