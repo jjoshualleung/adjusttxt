@@ -127,31 +127,31 @@ public class Main {
         }
 
         if (skipEven) {
-            skipEvenMethod(outputLines);
+            outputLines = skipEvenMethod(outputLines);
         }
         if (skipOdd) {
-            skipOddMethod(outputLines);
+            outputLines = skipOddMethod(outputLines);
         }
         if (removeLeading) {
-            removeLeadingSpaceMethod(outputLines);
+            outputLines = removeLeadingSpaceMethod(outputLines);
         }
         if (removeTrailing) {
-            removeTrailingSpaceMethod(outputLines);
+            outputLines = removeTrailingSpaceMethod(outputLines);
         }
         if (removeAll) {
-            removeAllSpaceMethod(outputLines);
+            outputLines = removeAllSpaceMethod(outputLines);
         }
         if (removeEmptyLine) {
-            removeEmptyLineMethod(outputLines);
+            outputLines = removeEmptyLineMethod(outputLines);
         }
         if (reverseWords) {
-            reverseWordsMethod(outputLines);
+            outputLines = reverseWordsMethod(outputLines);
         }
         if (reverseText) {
-            reverseTextMethod(outputLines);
+            outputLines = reverseTextMethod(outputLines);
         }
         if (addPrfix) {
-            addPrefixMethod(outputLines, prefix);
+            outputLines = addPrefixMethod(outputLines, prefix);
         }
 
 
