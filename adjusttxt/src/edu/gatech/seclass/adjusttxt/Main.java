@@ -43,6 +43,12 @@ public class Main {
             return;
         }
 
+        // Check -x and -w are not present at the same time
+        if (argsList.contains("-x") && argsList.contains("-w")) {
+            usage();
+            return;
+        }
+
         int j = 0;
         while (j < argsList.size()) {
             String arg = argsList.get(j);
@@ -51,13 +57,7 @@ public class Main {
                 usage();
                 return;
             }
-
-            // Check -x and -w are not present at the same time
-            // if present should throw error message
-            if (argsList.contains("-x") && argsList.contains("-w")) {
-                usage();
-                return;
-            }
+            j++;
         }
 
         for (int i = 0; i < argsList.size(); i++) {
