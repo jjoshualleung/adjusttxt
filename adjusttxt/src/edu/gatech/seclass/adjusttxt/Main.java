@@ -2,7 +2,6 @@ package edu.gatech.seclass.adjusttxt;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 
 public class Main {
@@ -125,181 +124,145 @@ public class Main {
             return;
         }
 
-        try {
-            if (skipEven) {
-                skipEvenMethod(true, file);
-            }
-            if (skipOdd) {
-                skipOddMethod(true, file);
-            }
-            if (removeLeading) {
-                removeLeadingSpaceMethod(true, file);
-            }
-            if (removeTrailing) {
-                removeTrailingSpaceMethod(true, file);
-            }
-            if (removeAll) {
-                removeAllSpaceMethod(true, file);
-            }
-            if (removeEmptyLine) {
-                removeEmptyLineMethod(true, file);
-            }
-            if (reverseWords) {
-                reverseWordsMethod(true, file);
-            }
-            if (reverseText) {
-                reverseTextMethod(true, file);
-            }
-            if (addPrfix) {
-                addPrefixMethod(true, prefix, file);
-            }
-        } catch (IOException e) {
-            usage();
+        if (skipEven) {
+            skipEvenMethod(outputLines);
+        }
+        if (skipOdd) {
+            skipOddMethod(outputLines);
+        }
+        if (removeLeading) {
+            removeLeadingSpaceMethod(outputLines);
+        }
+        if (removeTrailing) {
+            removeTrailingSpaceMethod(outputLines);
+        }
+        if (removeAll) {
+            removeAllSpaceMethod(outputLines);
+        }
+        if (removeEmptyLine) {
+            removeEmptyLineMethod(outputLines);
+        }
+        if (reverseWords) {
+            reverseWordsMethod(outputLines);
+        }
+        if (reverseText) {
+            reverseTextMethod(outputLines);
+        }
+        if (addPrfix) {
+            addPrefixMethod(outputLines, prefix);
+        }
+
+
+        // Output lines to stdout
+        for (String line : outputLines) {
+            System.out.println(line);
         }
     }
 
-    public static List<String> skipEvenMethod(boolean skipEven, File file) throws IOException {
+    public static List<String> skipEvenMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
 
-        List<String> fileLines = Files.readAllLines(file.toPath());
-        List<String> outputLines = new ArrayList<>();
-
-        for (int i = 0; i < fileLines.size(); i++) {
+        for (int i = 0; i < outputLines.size(); i++) {
             // skip even line
-            if (skipEven && i % 2 == 0) {
-                continue;
+            if (i % 2 == 0) {
+                result.add(outputLines.get(i));
             }
             // add line to output file
-            outputLines.add(fileLines.get(i));
         }
-
-        return outputLines;
+        return result;
     }
 
-    public static void skipOddMethod(boolean skipOdd, File file) throws IOException {
-        List<String> fileLines = Files.readAllLines(file.toPath());
 
-        List<String> outputLines = new ArrayList<>();
+    public static List<String> skipOddMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
 
-        for (int i = 0; i < fileLines.size(); i++) {
+        for (int i = 0; i < outputLines.size(); i++) {
             // skip odd line
-            if (skipOdd && i % 2 != 0) {
-                continue;
-            }
-            // add line to output file
-            outputLines.add(fileLines.get(i));
-        }
-        Files.write(file.toPath(), outputLines);
-    }
-
-    public static void removeLeadingSpaceMethod(boolean removeLeading, File file) throws IOException {
-        List<String> fileLines = Files.readAllLines(file.toPath());
-        List<String> outputLines = new ArrayList<>();
-
-        // for each line in the file
-        for (String line : fileLines) {
-            // if true then proceed
-            if (removeLeading) {
-                outputLines.add(line.stripLeading());
+            if (i % 2 != 0) {
+                result.add(outputLines.get(i));
             }
         }
-        Files.write(file.toPath(), outputLines);
+        return result;
     }
 
-    public static void removeTrailingSpaceMethod(boolean removeTrailing, File file) throws IOException {
-        List<String> fileLines = Files.readAllLines(file.toPath());
-        List<String> outputLines = new ArrayList<>();
+    public static List<String> removeLeadingSpaceMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
 
         // for each line in the file
-        for (String line : fileLines) {
+        for (String line : outputLines) {
             // if true then proceed
-            if (removeTrailing) {
-                outputLines.add(line.stripTrailing());
-            }
+            outputLines.add(line.stripLeading());
         }
-        Files.write(file.toPath(), outputLines);
+        return result;
     }
 
-    public static void removeAllSpaceMethod(boolean removeTrailing, File file) throws IOException {
-        List<String> fileLines = Files.readAllLines(file.toPath());
-        List<String> outputLines = new ArrayList<>();
+    public static List<String> removeTrailingSpaceMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
 
         // for each line in the file
-        for (String line : fileLines) {
+        for (String line : outputLines) {
+            outputLines.add(line.stripTrailing());
+        }
+        return result;
+    }
+
+    public static List<String> removeAllSpaceMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
+
+        // for each line in the file
+        for (String line : outputLines) {
             // if true then proceed
-            if (removeTrailing) {
                 // Remove all the space
                 outputLines.add(line.replace(" ", ""));
             }
-        }
-        Files.write(file.toPath(), outputLines);
+
+        return result;
     }
 
-    public static void removeEmptyLineMethod(boolean removeEmptyLine, File file) throws IOException {
-        List<String> fileLines = Files.readAllLines(file.toPath());
-        List<String> outputLines = new ArrayList<>();
+    public static List<String> removeEmptyLineMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
 
-        if (removeEmptyLine) {
-            for (String line : fileLines) {
-                // Check trimmed line is empty afterward
-                if (line.trim().isEmpty()) {
-                    outputLines.add(line);
-                } else {
-                    // If nothing to remove, keep the original text file
-                        outputLines = fileLines;
-                }
+        for (String line : outputLines) {
+            // Check trimmed line is empty afterward
+            if (line.trim().isEmpty()) {
+                outputLines.add(line);
             }
         }
-        Files.write(file.toPath(), outputLines);
+        return result;
     }
 
-    public static void reverseWordsMethod(boolean reverseWords, File file) throws IOException {
-        List<String> fileLines = Files.readAllLines(file.toPath());
-        List<String> outputLines = new ArrayList<>();
+    public static List<String> reverseWordsMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
 
-        if (reverseWords) {
-            for (String line : fileLines) {
-                String[] words = line.split(" ");
-                StringBuilder reversedLine = new StringBuilder();
-                for (int word = words.length - 1; word >= 0; word--) {
-                    reversedLine.append((words[word]));
-                }
-                outputLines.add(reversedLine.toString());
+        for (String line : outputLines) {
+            String[] words = line.split(" ");
+            StringBuilder reversedLine = new StringBuilder();
+            for (int word = words.length - 1; word >= 0; word--) {
+                reversedLine.append((words[word]));
             }
-        } else {
-            outputLines = fileLines;
+            outputLines.add(reversedLine.toString());
         }
-        Files.write(file.toPath(), outputLines);
+        return result;
     }
 
-    public static void reverseTextMethod(boolean reverseText, File file) throws IOException {
-        List<String> fileLines = Files.readAllLines(file.toPath());
-        List<String> outputLines = new ArrayList<>();
+    public static List<String> reverseTextMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
 
-        if (reverseText) {
-            for (String line : fileLines) {
-                StringBuilder reversedLine = new StringBuilder(line);
-                String reversedText = reversedLine.reverse().toString();
-                outputLines.add(reversedText);
-            }
-        } else {
-            outputLines = fileLines;
+        for (String line : outputLines) {
+            StringBuilder reversedLine = new StringBuilder(line);
+            String reversedText = reversedLine.reverse().toString();
+            outputLines.add(reversedText);
         }
-        Files.write(file.toPath(), outputLines);
+        return result;
     }
 
-    public static void addPrefixMethod(boolean addPrefix, String prefix, File file) throws IOException {
-        List<String> fileLines = Files.readAllLines(file.toPath());
-        List<String> outputLines = new ArrayList<>();
+    public static List<String> addPrefixMethod(List<String> outputLines, String prefix) {
+        List<String> result = new ArrayList<>();
 
-        if (addPrefix) {
-            for (String line : fileLines) {
-                String prefixSentence = prefix + line;
-                outputLines.add(prefixSentence);
-            }
-        } else {
-            outputLines = fileLines;
+        for (String line : outputLines) {
+            result.add(prefix + line);
         }
-        Files.write(file.toPath(), outputLines);
+        return result;
     }
 
     private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
