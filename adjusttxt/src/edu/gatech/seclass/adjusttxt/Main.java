@@ -69,6 +69,16 @@ public class Main {
                 return;
             }
 
+            String lastArg = argsList.get(argsList.size() - 1);
+            if (!lastArg.equals("-x")) {
+                if (argsList.contains("-x")) {
+                    if (!argsList.get(++j).contains("-")) {
+                        usage();
+                        return;
+                    }
+                }
+            }
+
             List<String> validParams = optionsMap.get(arg);
             // Check expected parameter for the option
             if (validParams != null) {
