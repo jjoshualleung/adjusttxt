@@ -104,7 +104,7 @@ public class Main {
                         }
                     }
                     break;
-                case "-x":
+                case "-w":
                     if (i + 1 < argsList.size()) {
                         String rArg = argsList.get(++i);
                         removeTrailing = false;
@@ -124,7 +124,7 @@ public class Main {
                         }
                     }
                     break;
-                case "-w":
+                case "-x":
                     if (i + 1 < argsList.size()) {
                         removeEmptyLine = true;
                     } else {
@@ -260,10 +260,9 @@ public class Main {
         // for each line in the file
         for (String line : outputLines) {
             // if true then proceed
-                // Remove all the space
+            // Remove all the space
             result.add(line.replace(" ", ""));
-            }
-
+        }
         return result;
     }
 
