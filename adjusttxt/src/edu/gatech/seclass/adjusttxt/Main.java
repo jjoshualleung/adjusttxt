@@ -89,7 +89,7 @@ public class Main {
             switch (arg) {
                 case "-s":
                     if (i + 1 < argsList.size()) {
-                        String paramsArg = argsList.get(i);
+                        String paramsArg = argsList.get(++i);
                         // Reset skip option in case there multiple skip option
                         skipEven = false;
                         skipOdd = false;
@@ -105,45 +105,58 @@ public class Main {
                     }
                     break;
                 case "-x":
-                    if (arg.equals("-x") && i + 1 < argsList.size()) {
-                        if (argsList.get(i + 1).equals("leading")) {
-                            removeTrailing = false;
-                            removeAll = false;
+                    if (i + 1 < argsList.size()) {
+                        String rArg = argsList.get(++i);
+                        removeTrailing = false;
+                        removeAll = false;
+                        removeLeading = true;
+                        if (rArg.equals("leading")) {
                             removeLeading = true;
                             i++;
-                        } else if (argsList.get(i + 1).equals("trailing")) {
-                            removeAll = false;
-                            removeLeading = false;
+                        } else if (rArg.equals("trailing")) {
                             removeTrailing = true;
                             i++;
-                        } else {
-                            removeLeading = false;
-                            removeTrailing = false;
+                        } else if (rArg.equals("all")) {
                             removeAll = true;
-                            i++;
+                        } else {
+                            usage();
+                            return;
                         }
                     }
-
-                    if (arg.equals("-w") && i + 1 < argsList.size()) {
+                    break;
+                case "-w":
+                    if (i + 1 < argsList.size()) {
                         removeEmptyLine = true;
-                        i++;
+                    } else {
+                        usage();
+                        return;
                     }
-
-                    if (arg.equals("-r") && i + 1 < argsList.size()) {
-                        if (argsList.get(i + 1).equals("words")) {
-                            reverseText = false;
+                    break;
+                case "-r":
+                    if (i + 1 < argsList.size()) {
+                        String rArg = argsList.get(++i);
+                        reverseText = false;
+                        reverseWords = false;
+                        if (rArg.equals("words")) {
                             reverseWords = true;
-                        } else if (argsList.get(i + 1).equals("text")) {
-                            reverseWords = false;
+                        } else if (rArg.equals("text")) {
                             reverseText = true;
+                        } else {
+                            usage();
+                            return;
                         }
                     }
+                    break;
 
-                    if (arg.equals("-p") && i + 1 < argsList.size()) {
+                case "-p":
+                    if (i + 1 < argsList.size()) {
                         addPrfix = true;
-                        prefix = argsList.get(i + 1);
-                        i++;
+                        prefix = argsList.get(++i);
+                    } else {
+                        usage();
+                        return;
                     }
+                    break;
             }
         }
 
@@ -226,7 +239,7 @@ public class Main {
         // for each line in the file
         for (String line : outputLines) {
             // if true then proceed
-            outputLines.add(line.stripLeading());
+            result.add(line.stripLeading());
         }
         return result;
     }
@@ -236,7 +249,7 @@ public class Main {
 
         // for each line in the file
         for (String line : outputLines) {
-            outputLines.add(line.stripTrailing());
+            result.add(line.stripTrailing());
         }
         return result;
     }
@@ -248,7 +261,7 @@ public class Main {
         for (String line : outputLines) {
             // if true then proceed
                 // Remove all the space
-                outputLines.add(line.replace(" ", ""));
+            result.add(line.replace(" ", ""));
             }
 
         return result;
@@ -260,7 +273,7 @@ public class Main {
         for (String line : outputLines) {
             // Check trimmed line is empty afterward
             if (line.trim().isEmpty()) {
-                outputLines.add(line);
+                result.add(line);
             }
         }
         return result;
@@ -275,7 +288,7 @@ public class Main {
             for (int word = words.length - 1; word >= 0; word--) {
                 reversedLine.append((words[word]));
             }
-            outputLines.add(reversedLine.toString());
+            result.add(reversedLine.toString());
         }
         return result;
     }
@@ -286,7 +299,7 @@ public class Main {
         for (String line : outputLines) {
             StringBuilder reversedLine = new StringBuilder(line);
             String reversedText = reversedLine.reverse().toString();
-            outputLines.add(reversedText);
+            result.add(reversedText);
         }
         return result;
     }
