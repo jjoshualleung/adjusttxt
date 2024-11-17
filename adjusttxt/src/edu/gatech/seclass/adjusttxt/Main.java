@@ -95,12 +95,8 @@ public class Main {
                         skipOdd = false;
                         if (paramsArg.equals("0")) {
                             skipEven = true;
-                            // move the next argument
-                            i++;
                         } else if (paramsArg.equals("1")) {
                             skipOdd = true;
-                            // move the next argument
-                            i++;
                         }
                     }
                     break;
@@ -112,10 +108,8 @@ public class Main {
                         removeLeading = true;
                         if (rArg.equals("leading")) {
                             removeLeading = true;
-                            i++;
                         } else if (rArg.equals("trailing")) {
                             removeTrailing = true;
-                            i++;
                         } else if (rArg.equals("all")) {
                             removeAll = true;
                         } else {
