@@ -73,9 +73,13 @@ public class Main {
             // Check expected parameter for the option
             if (validParams != null) {
                 j++;
-
-                // Verify parameter exists
-                if (j >= argsList.size() || !validParams.contains(argsList.get(j))) {
+                if (j >= argsList.size()) {
+                    usage();
+                    return;
+                }
+                String param = argsList.get(j);
+                // If not empty, check if parameter is valid
+                if (!validParams.isEmpty() && !validParams.contains(param)) {
                     usage();
                     return;
                 }
@@ -326,7 +330,7 @@ public class Main {
         optionsMap.put("-w", whitespaceParam);
         optionsMap.put("-x", emptyLineParam);
         optionsMap.put("-r", reverseParam);
-        optionsMap.put("-p", null);
+        optionsMap.put("-p", new ArrayList<>());
 
         return optionsMap;
     }
