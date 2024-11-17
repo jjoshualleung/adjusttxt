@@ -57,7 +57,19 @@ public class Main {
                 usage();
                 return;
             }
-            j++;
+
+            List<String> validParams = optionsMap.get(arg);
+            // Check expected parameter for the option
+            if (validParams != null) {
+                j++;
+
+                // Verify parameter exists
+                if (j >= argsList.size() || !validParams.contains(argsList.get(j))) {
+                    usage();
+                    return;
+                }
+                j++;
+            }
         }
 
         for (int i = 0; i < argsList.size(); i++) {
