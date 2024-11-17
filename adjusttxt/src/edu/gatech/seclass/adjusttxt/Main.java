@@ -242,8 +242,13 @@ public class Main {
 
         // for each line in the file
         for (String line : outputLines) {
-            // if true then proceed
-            result.add(line.stripLeading());
+            if (line == null) {
+                // Replace null lines with empty strings
+                result.add("");
+            } else {
+                // if true then proceed
+                result.add(line.stripLeading());
+            }
         }
         return result;
     }
@@ -253,7 +258,12 @@ public class Main {
 
         // for each line in the file
         for (String line : outputLines) {
-            result.add(line.stripTrailing());
+            if (line == null) {
+                // Replace null lines with empty strings
+                result.add("");
+            } else {
+                result.add(line.stripTrailing());
+            }
         }
         return result;
     }
@@ -263,9 +273,13 @@ public class Main {
 
         // for each line in the file
         for (String line : outputLines) {
-            // if true then proceed
-            // Remove all the space
-            result.add(line.replaceAll("\\s+", "").trim());
+            if (line == null) {
+                // Replace null lines with empty strings
+                result.add("");
+            } else {
+                // Remove all the space
+                result.add(line.replaceAll("\\s+", "").trim());
+            }
         }
         return result;
     }
