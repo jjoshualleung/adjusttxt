@@ -275,6 +275,9 @@ public class Main {
             StringBuilder reversedLine = new StringBuilder();
             for (int word = words.length - 1; word >= 0; word--) {
                 reversedLine.append((words[word]));
+                if (word != 0) {
+                    reversedLine.append(" ");
+                }
             }
             result.add(reversedLine.toString());
         }
