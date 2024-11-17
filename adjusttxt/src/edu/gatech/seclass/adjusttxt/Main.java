@@ -43,6 +43,12 @@ public class Main {
             return;
         }
 
+        // Verify the file end with new line
+        if (!checkNewLineAtEnd(file)) {
+            usage();
+            return;
+        };
+
         // Check -x and -w are not present at the same time
         if (argsList.contains("-x") && argsList.contains("-w")) {
             usage();
@@ -305,6 +311,15 @@ public class Main {
         optionsMap.put("-p", null);
 
         return optionsMap;
+    }
+
+    private static boolean checkNewLineAtEnd(File file) {
+        try {
+            String content = new String(Files.readAllBytes(file.toPath()));
+            return content.endsWith(System.lineSeparator());
+        } catch (IOException e) {
+            return false;
+        }
     }
 
     private static void usage() {
