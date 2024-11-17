@@ -68,8 +68,8 @@ public class Main {
                     usage();
                     return;
                 }
-                j++;
             }
+            j++;
         }
 
         for (int i = 0; i < argsList.size(); i++) {
