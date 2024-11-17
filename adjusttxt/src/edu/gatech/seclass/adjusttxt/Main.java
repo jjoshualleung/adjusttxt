@@ -102,15 +102,15 @@ public class Main {
                     break;
                 case "-w":
                     if (i + 1 < argsList.size()) {
-                        String rArg = argsList.get(++i);
+                        String wArg = argsList.get(++i);
                         removeTrailing = false;
                         removeAll = false;
-                        removeLeading = true;
-                        if (rArg.equals("leading")) {
+                        removeLeading = false;
+                        if (wArg.equals("leading")) {
                             removeLeading = true;
-                        } else if (rArg.equals("trailing")) {
+                        } else if (wArg.equals("trailing")) {
                             removeTrailing = true;
-                        } else if (rArg.equals("all")) {
+                        } else if (wArg.equals("all")) {
                             removeAll = true;
                         } else {
                             usage();
@@ -119,12 +119,7 @@ public class Main {
                     }
                     break;
                 case "-x":
-                    if (i + 1 < argsList.size()) {
-                        removeEmptyLine = true;
-                    } else {
-                        usage();
-                        return;
-                    }
+                    removeEmptyLine = true;
                     break;
                 case "-r":
                     if (i + 1 < argsList.size()) {
@@ -265,7 +260,7 @@ public class Main {
 
         for (String line : outputLines) {
             // Check trimmed line is empty afterward
-            if (line.trim().isEmpty()) {
+            if (!line.trim().isEmpty()) {
                 result.add(line);
             }
         }
