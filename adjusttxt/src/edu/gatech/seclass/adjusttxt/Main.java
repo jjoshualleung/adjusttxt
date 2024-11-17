@@ -43,6 +43,11 @@ public class Main {
             return;
         }
 
+        // Verify file is empty content
+        if (file.length() == 0) {
+            return;
+        }
+
         // Verify the file end with new line
         if (!checkNewLineAtEnd(file)) {
             usage();
