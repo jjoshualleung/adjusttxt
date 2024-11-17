@@ -20,7 +20,7 @@ public class Main {
         boolean reverseText = false;
         boolean addPrfix = false;
 
-        String prefix = null;
+        String prefix = "";
 
         // if argument is empty --> print error message
         if (args.length == 0) {
@@ -84,59 +84,66 @@ public class Main {
         }
 
         /* ------------------------------- Implement options functionality ------------------------------- */
-
         for (int i = 0; i < argsList.size(); i++) {
             String arg = argsList.get(i);
-            if (arg.equals("-s") && i + 1 < argsList.size() && argsList.get(i + 1).equals("0")) {
-                skipOdd = false;
-                skipEven = true;
-                // move the next argument
-                i++;
-            } else {
-                skipEven = false;
-                skipOdd = true;
-                // move the next argument
-                i++;
-            }
+            switch (arg) {
+                case "-s":
+                    if (i + 1 < argsList.size()) {
+                        String paramsArg = argsList.get(i);
+                        // Reset skip option in case there multiple skip option
+                        skipEven = false;
+                        skipOdd = false;
+                        if (paramsArg.equals("0")) {
+                            skipEven = true;
+                            // move the next argument
+                            i++;
+                        } else if (paramsArg.equals("1")) {
+                            skipOdd = true;
+                            // move the next argument
+                            i++;
+                        }
+                    }
+                    break;
+                case "-x":
+                    if (arg.equals("-x") && i + 1 < argsList.size()) {
+                        if (argsList.get(i + 1).equals("leading")) {
+                            removeTrailing = false;
+                            removeAll = false;
+                            removeLeading = true;
+                            i++;
+                        } else if (argsList.get(i + 1).equals("trailing")) {
+                            removeAll = false;
+                            removeLeading = false;
+                            removeTrailing = true;
+                            i++;
+                        } else {
+                            removeLeading = false;
+                            removeTrailing = false;
+                            removeAll = true;
+                            i++;
+                        }
+                    }
 
-            if (arg.equals("-x") && i + 1 < argsList.size()) {
-                if (argsList.get(i + 1).equals("leading")) {
-                    removeTrailing = false;
-                    removeAll = false;
-                    removeLeading = true;
-                    i++;
-                } else if (argsList.get(i + 1).equals("trailing")) {
-                    removeAll = false;
-                    removeLeading = false;
-                    removeTrailing = true;
-                    i++;
-                } else {
-                    removeLeading = false;
-                    removeTrailing = false;
-                    removeAll = true;
-                    i++;
-                }
-            }
+                    if (arg.equals("-w") && i + 1 < argsList.size()) {
+                        removeEmptyLine = true;
+                        i++;
+                    }
 
-            if (arg.equals("-w") && i + 1 < argsList.size()) {
-                removeEmptyLine = true;
-                i++;
-            }
+                    if (arg.equals("-r") && i + 1 < argsList.size()) {
+                        if (argsList.get(i + 1).equals("words")) {
+                            reverseText = false;
+                            reverseWords = true;
+                        } else if (argsList.get(i + 1).equals("text")) {
+                            reverseWords = false;
+                            reverseText = true;
+                        }
+                    }
 
-            if (arg.equals("-r") && i + 1 < argsList.size()) {
-                if (argsList.get(i + 1).equals("words")) {
-                    reverseText = false;
-                    reverseWords = true;
-                } else if (argsList.get(i + 1).equals("text")) {
-                    reverseWords = false;
-                    reverseText = true;
-                }
-            }
-
-            if (arg.equals("-p") && i + 1 < argsList.size()) {
-                addPrfix = true;
-                prefix = argsList.get(i + 1);
-                i++;
+                    if (arg.equals("-p") && i + 1 < argsList.size()) {
+                        addPrfix = true;
+                        prefix = argsList.get(i + 1);
+                        i++;
+                    }
             }
         }
 
