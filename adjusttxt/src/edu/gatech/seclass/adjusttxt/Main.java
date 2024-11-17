@@ -338,7 +338,7 @@ public class Main {
         // Map option to its parameters
         optionsMap.put("-s", skipParam);
         optionsMap.put("-w", whitespaceParam);
-        optionsMap.put("-x", emptyLineParam);
+        optionsMap.put("-x", null);
         optionsMap.put("-r", reverseParam);
         optionsMap.put("-p", new ArrayList<>());
 
