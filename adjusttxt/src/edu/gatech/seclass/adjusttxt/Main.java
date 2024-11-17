@@ -69,10 +69,11 @@ public class Main {
                 return;
             }
 
-            String lastArg = argsList.get(argsList.size() - 1);
-            if (!lastArg.equals("-x")) {
-                if (argsList.contains("-x")) {
-                    if (!argsList.get(++j).contains("-")) {
+            if (argsList.contains("-x")) {
+                int index = argsList.indexOf("-x");
+                // if -x is not the last arg
+                if (index != argsList.size() - 1) {
+                    if (!argsList.get(index + 1).startsWith("-")) {
                         usage();
                         return;
                     }
