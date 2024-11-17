@@ -300,11 +300,11 @@ public class Main {
         List<String> result = new ArrayList<>();
 
         for (String line : outputLines) {
-            String[] words = line.split("(?<=\\t)|(?=\\t)| ");
+            String[] words = line.split(" ");
             StringBuilder reversedLine = new StringBuilder();
             for (int word = words.length - 1; word >= 0; word--) {
                 reversedLine.append((words[word]));
-                if (word != 0 && !words[word].equals("\t")) {
+                if (word != 0) {
                     reversedLine.append(" ");
                 }
             }
