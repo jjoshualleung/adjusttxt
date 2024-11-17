@@ -265,7 +265,7 @@ public class Main {
         for (String line : outputLines) {
             // if true then proceed
             // Remove all the space
-            result.add(line.replaceAll("\\s+", ""));
+            result.add(line.replaceAll("\\s+", "").trim());
         }
         return result;
     }
