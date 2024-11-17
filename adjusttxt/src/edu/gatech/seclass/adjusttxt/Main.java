@@ -300,7 +300,7 @@ public class Main {
         List<String> result = new ArrayList<>();
 
         for (String line : outputLines) {
-            String[] words = line.split("(?=\\t)| ");
+            String[] words = line.split("(?<=\\t)|(?=\\t)| ");
             StringBuilder reversedLine = new StringBuilder();
             for (int word = words.length - 1; word >= 0; word--) {
                 reversedLine.append((words[word]));
