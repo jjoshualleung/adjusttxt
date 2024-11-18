@@ -13,7 +13,12 @@ public class AdjustTxt implements AdjustTxtInterface{
     }
     @Override
     public void reset() {
-
+        lineToSkip = null;
+        removeSpaces = null;
+        reverseLine = null;
+        filepath = null;
+        prefix = null;
+        removeEmptyLines = false;
     }
 
     @Override
