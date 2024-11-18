@@ -2,6 +2,10 @@ package edu.gatech.seclass.adjusttxt;
 
 public class AdjustTxt implements AdjustTxtInterface{
 
+    private LineToSkip lineToSkip;
+    private RemoveSpaces removeSpaces;
+    private ReverseLine reverseLine;
+
     @Override
     public void reset() {
 
