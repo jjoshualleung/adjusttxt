@@ -5,7 +5,12 @@ public class AdjustTxt implements AdjustTxtInterface{
     private LineToSkip lineToSkip;
     private RemoveSpaces removeSpaces;
     private ReverseLine reverseLine;
+    private String filepath;
+    private String prefix;
+    private boolean removeEmptyLines;
 
+    public AdjustTxt(){
+    }
     @Override
     public void reset() {
 
