@@ -23,32 +23,32 @@ public class AdjustTxt implements AdjustTxtInterface{
 
     @Override
     public void setFilepath(String filepath) {
-
+        this.filepath = filepath;
     }
 
     @Override
     public void setLineToSkip(LineToSkip lineToSkip) {
-
+        this.lineToSkip = lineToSkip;
     }
 
     @Override
     public void setRemoveSpaces(RemoveSpaces removeSpaces) {
-
+        this.removeSpaces = removeSpaces;
     }
 
     @Override
     public void setRemoveEmptyLines(boolean removeEmptyLines) {
-
+        this.removeEmptyLines = removeEmptyLines;
     }
 
     @Override
     public void setReverseLine(ReverseLine reverseLine) {
-
+        this.reverseLine = reverseLine;
     }
 
     @Override
     public void setPrefix(String prefix) {
-
+        this.prefix = prefix;
     }
 
     @Override
