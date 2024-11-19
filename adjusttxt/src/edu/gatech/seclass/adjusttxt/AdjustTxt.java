@@ -75,6 +75,11 @@ public class AdjustTxt implements AdjustTxtInterface{
         if (!checkNewLineAtEnd(getfile(filepath))) {
             throw new AdjustTxtException();
         }
+
+        // Check -x and -w are not present at the same time
+        if (removeEmptyLines && removeSpaces != null) {
+            throw new AdjustTxtException();
+        }
     }
 
     /**
