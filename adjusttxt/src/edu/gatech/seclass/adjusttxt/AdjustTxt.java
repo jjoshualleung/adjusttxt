@@ -60,12 +60,12 @@ public class AdjustTxt implements AdjustTxtInterface{
     @Override
     public void adjusttxt() throws AdjustTxtException {
         if (filepath == null){
-            throw new AdjustTxtException();
+            throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
         }
 
         // Verify the file path exist
         if (!getfile(filepath).exists() || !getfile(filepath).isFile()) {
-            throw new AdjustTxtException();
+            throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
         }
 
         // Verify file is empty content
@@ -74,23 +74,23 @@ public class AdjustTxt implements AdjustTxtInterface{
         }
 
         if (!checkNewLineAtEnd(getfile(filepath))) {
-            throw new AdjustTxtException();
+            throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
         }
 
         // Check -x and -w are not present at the same time
         if (removeEmptyLines && removeSpaces != null) {
-            throw new AdjustTxtException();
+            throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
         }
 
         List<String> outputLines;
         try {
             outputLines = Files.readAllLines(getfile(filepath).toPath());
         } catch (IOException e) {
-            throw new AdjustTxtException();
+            throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
         }
 
         if (outputLines.isEmpty()) {
-            throw new AdjustTxtException();
+            throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
         }
 
         if (lineToSkip == LineToSkip.even) {
