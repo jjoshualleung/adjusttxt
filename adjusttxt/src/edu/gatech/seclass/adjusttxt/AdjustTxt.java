@@ -258,28 +258,6 @@ public class AdjustTxt implements AdjustTxtInterface{
         return file;
     }
 
-    private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
-        return optionsMap.containsKey(option);
-    }
-
-    public static HashMap<String, List<String>> optionsTable() {
-        // Create a hashmap
-        HashMap<String, List<String>> optionsMap = new HashMap<>();
-
-        List<String> skipParam = Arrays.asList("0", "1");
-        List<String> whitespaceParam = Arrays.asList("leading", "trailing", "all");
-        List<String> reverseParam = Arrays.asList("words", "text");
-
-        // Map option to its parameters
-        optionsMap.put("-s", skipParam);
-        optionsMap.put("-w", whitespaceParam);
-        optionsMap.put("-x", null);
-        optionsMap.put("-r", reverseParam);
-        optionsMap.put("-p", new ArrayList<>());
-
-        return optionsMap;
-    }
-
     /**
      * Check new line exist in text file
      * @param file
