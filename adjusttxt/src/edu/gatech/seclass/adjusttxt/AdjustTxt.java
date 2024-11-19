@@ -80,6 +80,49 @@ public class AdjustTxt implements AdjustTxtInterface{
         if (removeEmptyLines && removeSpaces != null) {
             throw new AdjustTxtException();
         }
+
+        List<String> outputLines;
+        try {
+            outputLines = Files.readAllLines(getfile(filepath).toPath());
+        } catch (IOException e) {
+            throw new AdjustTxtException();
+        }
+
+        if (outputLines.isEmpty()) {
+            throw new AdjustTxtException();
+        }
+
+        if (lineToSkip == LineToSkip.even) {
+            outputLines = skipEvenMethod(outputLines);
+        } else if (lineToSkip == lineToSkip.odd) {
+            outputLines = skipOddMethod(outputLines);
+        }
+
+    }
+
+    public static List<String> skipEvenMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
+
+        for (int i = 0; i < outputLines.size(); i++) {
+            // skip even line
+            if (i % 2 == 0) {
+                result.add(outputLines.get(i));
+            }
+        }
+        return result;
+    }
+
+
+    public static List<String> skipOddMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
+
+        for (int i = 0; i < outputLines.size(); i++) {
+            // skip odd line
+            if (i % 2 != 0) {
+                result.add(outputLines.get(i));
+            }
+        }
+        return result;
     }
 
     /**
