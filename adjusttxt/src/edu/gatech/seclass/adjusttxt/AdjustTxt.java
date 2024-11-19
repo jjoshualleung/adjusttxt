@@ -98,6 +98,16 @@ public class AdjustTxt implements AdjustTxtInterface{
             outputLines = skipOddMethod(outputLines);
         }
 
+        if (removeSpaces == removeSpaces.leading) {
+            outputLines = removeLeadingSpaceMethod(outputLines);
+        }
+        if (removeSpaces == removeSpaces.trailing) {
+            outputLines = removeTrailingSpaceMethod(outputLines);
+        }
+        if (removeSpaces == removeSpaces.all) {
+            outputLines = removeAllSpaceMethod(outputLines);
+        }
+
         // Output lines to stdout
         for (String line : outputLines) {
             System.out.println(line);
@@ -116,7 +126,6 @@ public class AdjustTxt implements AdjustTxtInterface{
         return result;
     }
 
-
     public static List<String> skipOddMethod(List<String> outputLines) {
         List<String> result = new ArrayList<>();
 
@@ -124,6 +133,53 @@ public class AdjustTxt implements AdjustTxtInterface{
             // skip odd line
             if (i % 2 != 0) {
                 result.add(outputLines.get(i));
+            }
+        }
+        return result;
+    }
+
+    public static List<String> removeLeadingSpaceMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
+
+        // for each line in the file
+        for (String line : outputLines) {
+            if (line == null) {
+                // Replace null lines with empty strings
+                result.add("");
+            } else {
+                // if true then proceed
+                result.add(line.stripLeading());
+            }
+        }
+        return result;
+    }
+
+    public static List<String> removeTrailingSpaceMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
+
+        // for each line in the file
+        for (String line : outputLines) {
+            if (line == null) {
+                // Replace null lines with empty strings
+                result.add("");
+            } else {
+                result.add(line.stripTrailing());
+            }
+        }
+        return result;
+    }
+
+    public static List<String> removeAllSpaceMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
+
+        // for each line in the file
+        for (String line : outputLines) {
+            if (line == null) {
+                // Replace null lines with empty strings
+                result.add("");
+            } else {
+                // Remove all the space
+                result.add(line.replaceAll("\\s+", "").trim());
             }
         }
         return result;
