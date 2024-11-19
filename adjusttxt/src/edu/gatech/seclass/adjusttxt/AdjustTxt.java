@@ -1,5 +1,7 @@
 package edu.gatech.seclass.adjusttxt;
 
+import java.util.*;
+
 public class AdjustTxt implements AdjustTxtInterface{
 
     private LineToSkip lineToSkip;
@@ -54,5 +56,27 @@ public class AdjustTxt implements AdjustTxtInterface{
     @Override
     public void adjusttxt() throws AdjustTxtException {
 
+    }
+
+    private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
+        return optionsMap.containsKey(option);
+    }
+
+    public static HashMap<String, List<String>> optionsTable() {
+        // Create a hashmap
+        HashMap<String, List<String>> optionsMap = new HashMap<>();
+
+        List<String> skipParam = Arrays.asList("0", "1");
+        List<String> whitespaceParam = Arrays.asList("leading", "trailing", "all");
+        List<String> reverseParam = Arrays.asList("words", "text");
+
+        // Map option to its parameters
+        optionsMap.put("-s", skipParam);
+        optionsMap.put("-w", whitespaceParam);
+        optionsMap.put("-x", null);
+        optionsMap.put("-r", reverseParam);
+        optionsMap.put("-p", new ArrayList<>());
+
+        return optionsMap;
     }
 }
