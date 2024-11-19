@@ -1,5 +1,6 @@
 package edu.gatech.seclass.adjusttxt;
 
+import java.io.File;
 import java.util.*;
 
 public class AdjustTxt implements AdjustTxtInterface{
@@ -55,7 +56,29 @@ public class AdjustTxt implements AdjustTxtInterface{
 
     @Override
     public void adjusttxt() throws AdjustTxtException {
+        if (filepath == null){
+            throw new AdjustTxtException();
+        }
 
+        // Verify the file path exist
+        if (!getfile(filepath).exists() || !getfile(filepath).isFile()) {
+            throw new AdjustTxtException();
+        }
+
+        // Verify file is empty content
+        if (getfile(filepath).length() == 0) {
+            System.out.println();
+        }
+    }
+
+    /**
+     *
+     * @param filepath
+     * @return text file
+     */
+    public File getfile(String filepath) {
+        File file = new File(filepath);
+        return file;
     }
 
     private static boolean verifyOptionsLookUp(HashMap<String, List<String>> optionsMap, String option) {
