@@ -15,6 +15,7 @@ public class AdjustTxt implements AdjustTxtInterface{
     private boolean removeEmptyLines;
 
     public AdjustTxt(){
+        reset();
     }
     @Override
     public void reset() {
@@ -98,7 +99,7 @@ public class AdjustTxt implements AdjustTxtInterface{
             outputLines = skipOddMethod(outputLines);
         }
 
-        if (removeSpaces == removeSpaces.leading) {
+        if (removeSpaces == RemoveSpaces.leading) {
             outputLines = removeLeadingSpaceMethod(outputLines);
         }
         if (removeSpaces == removeSpaces.trailing) {
