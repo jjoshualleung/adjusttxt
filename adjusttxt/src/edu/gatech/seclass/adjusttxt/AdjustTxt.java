@@ -108,6 +108,16 @@ public class AdjustTxt implements AdjustTxtInterface{
             outputLines = removeAllSpaceMethod(outputLines);
         }
 
+        if (reverseLine == reverseLine.words) {
+            outputLines = reverseWordsMethod(outputLines);
+        }
+        if (reverseLine == reverseLine.text) {
+            outputLines = reverseTextMethod(outputLines);
+        }
+        if (prefix != null) {
+            outputLines = addPrefixMethod(outputLines, prefix);
+        }
+
         // Output lines to stdout
         for (String line : outputLines) {
             System.out.println(line);
@@ -181,6 +191,55 @@ public class AdjustTxt implements AdjustTxtInterface{
                 // Remove all the space
                 result.add(line.replaceAll("\\s+", "").trim());
             }
+        }
+        return result;
+    }
+
+    public static List<String> removeEmptyLineMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
+
+        for (String line : outputLines) {
+            // Check trimmed line is empty afterward
+            if (!line.trim().isEmpty()) {
+                result.add(line);
+            }
+        }
+        return result;
+    }
+
+    public static List<String> reverseWordsMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
+
+        for (String line : outputLines) {
+            String[] words = line.split(" ");
+            StringBuilder reversedLine = new StringBuilder();
+            for (int word = words.length - 1; word >= 0; word--) {
+                reversedLine.append((words[word]));
+                if (word != 0) {
+                    reversedLine.append(" ");
+                }
+            }
+            result.add(reversedLine.toString());
+        }
+        return result;
+    }
+
+    public static List<String> reverseTextMethod(List<String> outputLines) {
+        List<String> result = new ArrayList<>();
+
+        for (String line : outputLines) {
+            StringBuilder reversedLine = new StringBuilder(line);
+            String reversedText = reversedLine.reverse().toString();
+            result.add(reversedText);
+        }
+        return result;
+    }
+
+    public static List<String> addPrefixMethod(List<String> outputLines, String prefix) {
+        List<String> result = new ArrayList<>();
+
+        for (String line : outputLines) {
+            result.add(prefix + line);
         }
         return result;
     }
