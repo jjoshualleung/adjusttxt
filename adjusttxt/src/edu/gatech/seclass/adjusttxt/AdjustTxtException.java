@@ -10,8 +10,4 @@ public class AdjustTxtException extends Exception {
     AdjustTxtException(String s) {
         super(s);
     }
-
-    AdjustTxtException() {
-        super("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
-    }
 }
