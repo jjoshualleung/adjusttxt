@@ -98,6 +98,10 @@ public class AdjustTxt implements AdjustTxtInterface{
             outputLines = skipOddMethod(outputLines);
         }
 
+        // Output lines to stdout
+        for (String line : outputLines) {
+            System.out.println(line);
+        }
     }
 
     public static List<String> skipEvenMethod(List<String> outputLines) {
