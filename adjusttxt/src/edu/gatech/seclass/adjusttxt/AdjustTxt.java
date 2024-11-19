@@ -107,6 +107,9 @@ public class AdjustTxt implements AdjustTxtInterface{
         if (removeSpaces == removeSpaces.all) {
             outputLines = removeAllSpaceMethod(outputLines);
         }
+        if (removeEmptyLines) {
+            outputLines = removeEmptyLineMethod(outputLines);
+        }
 
         if (reverseLine == reverseLine.words) {
             outputLines = reverseWordsMethod(outputLines);
