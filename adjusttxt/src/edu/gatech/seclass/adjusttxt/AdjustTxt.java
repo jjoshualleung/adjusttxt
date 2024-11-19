@@ -1,6 +1,8 @@
 package edu.gatech.seclass.adjusttxt;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.*;
 
 public class AdjustTxt implements AdjustTxtInterface{
@@ -69,6 +71,10 @@ public class AdjustTxt implements AdjustTxtInterface{
         if (getfile(filepath).length() == 0) {
             System.out.println();
         }
+
+        if (!checkNewLineAtEnd(getfile(filepath))) {
+            throw new AdjustTxtException();
+        }
     }
 
     /**
@@ -101,5 +107,19 @@ public class AdjustTxt implements AdjustTxtInterface{
         optionsMap.put("-p", new ArrayList<>());
 
         return optionsMap;
+    }
+
+    /**
+     * Check new line exist in text file
+     * @param file
+     * @return
+     */
+    private static boolean checkNewLineAtEnd(File file) {
+        try {
+            String content = new String(Files.readAllBytes(file.toPath()));
+            return content.endsWith(System.lineSeparator());
+        } catch (IOException e) {
+            return false;
+        }
     }
 }
