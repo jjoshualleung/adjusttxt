@@ -63,17 +63,19 @@ public class AdjustTxt implements AdjustTxtInterface{
             throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
         }
 
+        File file = getfile(filepath);
+
         // Verify the file path exist
-        if (!getfile(filepath).exists() || !getfile(filepath).isFile()) {
+        if (!file.exists() || !file.isFile()) {
             throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
         }
 
         // Verify file is empty content
-        if (getfile(filepath).length() == 0) {
+        if (file.length() == 0) {
             System.out.println();
         }
 
-        if (!checkNewLineAtEnd(getfile(filepath))) {
+        if (!checkNewLineAtEnd(file)) {
             throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
         }
 
@@ -84,7 +86,7 @@ public class AdjustTxt implements AdjustTxtInterface{
 
         List<String> outputLines;
         try {
-            outputLines = Files.readAllLines(getfile(filepath).toPath());
+            outputLines = Files.readAllLines(file.toPath());
         } catch (IOException e) {
             throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
         }
