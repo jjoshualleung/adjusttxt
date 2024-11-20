@@ -73,6 +73,7 @@ public class AdjustTxt implements AdjustTxtInterface{
         // Verify file is empty content
         if (file.length() == 0) {
             System.out.println();
+            return;
         }
 
         if (!checkNewLineAtEnd(file)) {
