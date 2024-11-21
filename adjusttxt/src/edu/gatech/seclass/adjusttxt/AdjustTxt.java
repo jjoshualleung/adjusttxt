@@ -220,13 +220,28 @@ public class AdjustTxt implements AdjustTxtInterface{
             String[] words = line.split(" ");
             StringBuilder reversedLine = new StringBuilder();
             for (int word = words.length - 1; word >= 0; word--) {
-                reversedLine.append((words[word]));
+                String revisedWords = reverseWordsHelper(words[word]);
+                reversedLine.append((revisedWords));
                 if (word != 0) {
                     reversedLine.append(" ");
                 }
             }
             result.add(reversedLine.toString());
         }
+        return result;
+    }
+
+    private static String reverseWordsHelper(String word) {
+        int index = 0;
+        int wordLength = word.length();
+
+        while (true) {
+            if (index > wordLength - 2 || word.indexOf("\\t", index) != index) break;
+            index += 2;
+        }
+
+        // concatenate two string
+        String result = word.substring(index) + word.substring(0, index);
         return result;
     }
 
