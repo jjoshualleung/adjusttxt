@@ -257,7 +257,7 @@ public class AdjustTxt implements AdjustTxtInterface{
     }
 
     public static List<String> addPrefixMethod(List<String> outputLines, String prefix) {
-        if (prefix.equals("\t")) {
+        if (prefix.equals("\\t")) {
             throw new IllegalArgumentException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
         }
 
