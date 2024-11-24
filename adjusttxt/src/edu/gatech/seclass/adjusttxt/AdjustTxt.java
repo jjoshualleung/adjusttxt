@@ -98,20 +98,19 @@ public class AdjustTxt implements AdjustTxtInterface{
 
         if (lineToSkip == LineToSkip.even) {
             outputLines = skipEvenMethod(outputLines);
-        } else if (lineToSkip == lineToSkip.odd) {
+        }
+        if (lineToSkip == lineToSkip.odd) {
             outputLines = skipOddMethod(outputLines);
-        } else {
-            throw new AdjustTxtException(error);
         }
 
         if (removeSpaces == RemoveSpaces.leading) {
             outputLines = removeLeadingSpaceMethod(outputLines);
-        } else if (removeSpaces == removeSpaces.trailing) {
+        }
+        if (removeSpaces == removeSpaces.trailing) {
             outputLines = removeTrailingSpaceMethod(outputLines);
-        } else if (removeSpaces == removeSpaces.all) {
+        }
+        if (removeSpaces == removeSpaces.all) {
             outputLines = removeAllSpaceMethod(outputLines);
-        } else {
-            throw new AdjustTxtException(error);
         }
 
         if (removeEmptyLines) {
@@ -120,10 +119,9 @@ public class AdjustTxt implements AdjustTxtInterface{
 
         if (reverseLine == reverseLine.words) {
             outputLines = reverseWordsMethod(outputLines);
-        } else if (reverseLine == reverseLine.text) {
+        }
+        if (reverseLine == reverseLine.text) {
             outputLines = reverseTextMethod(outputLines);
-        } else {
-            throw new AdjustTxtException(error);
         }
 
         if (prefix != null) {
