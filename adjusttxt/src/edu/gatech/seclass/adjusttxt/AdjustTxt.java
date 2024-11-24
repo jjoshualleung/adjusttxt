@@ -100,27 +100,32 @@ public class AdjustTxt implements AdjustTxtInterface{
             outputLines = skipEvenMethod(outputLines);
         } else if (lineToSkip == lineToSkip.odd) {
             outputLines = skipOddMethod(outputLines);
+        } else {
+            throw new AdjustTxtException(error);
         }
 
         if (removeSpaces == RemoveSpaces.leading) {
             outputLines = removeLeadingSpaceMethod(outputLines);
-        }
-        if (removeSpaces == removeSpaces.trailing) {
+        } else if (removeSpaces == removeSpaces.trailing) {
             outputLines = removeTrailingSpaceMethod(outputLines);
-        }
-        if (removeSpaces == removeSpaces.all) {
+        } else if (removeSpaces == removeSpaces.all) {
             outputLines = removeAllSpaceMethod(outputLines);
+        } else {
+            throw new AdjustTxtException(error);
         }
+
         if (removeEmptyLines) {
             outputLines = removeEmptyLineMethod(outputLines);
         }
 
         if (reverseLine == reverseLine.words) {
             outputLines = reverseWordsMethod(outputLines);
-        }
-        if (reverseLine == reverseLine.text) {
+        } else if (reverseLine == reverseLine.text) {
             outputLines = reverseTextMethod(outputLines);
+        } else {
+            throw new AdjustTxtException(error);
         }
+
         if (prefix != null) {
             outputLines = addPrefixMethod(outputLines, prefix);
         }
