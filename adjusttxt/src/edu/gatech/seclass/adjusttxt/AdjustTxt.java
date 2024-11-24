@@ -13,6 +13,7 @@ public class AdjustTxt implements AdjustTxtInterface{
     private String filepath;
     private String prefix;
     private boolean removeEmptyLines;
+    private String error = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE";
 
     public AdjustTxt(){
         reset();
@@ -60,14 +61,14 @@ public class AdjustTxt implements AdjustTxtInterface{
     @Override
     public void adjusttxt() throws AdjustTxtException {
         if (filepath == null){
-            throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
+            throw new AdjustTxtException(error);
         }
 
         File file = getfile(filepath);
 
         // Verify the file path exist
         if (!file.exists() || !file.isFile()) {
-            throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
+            throw new AdjustTxtException(error);
         }
 
         // Verify file is empty content
@@ -76,23 +77,23 @@ public class AdjustTxt implements AdjustTxtInterface{
         }
 
         if (!checkNewLineAtEnd(file)) {
-            throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
+            throw new AdjustTxtException(error);
         }
 
         // Check -x and -w are not present at the same time
         if (removeEmptyLines && removeSpaces != null) {
-            throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
+            throw new AdjustTxtException(error);
         }
 
         List<String> outputLines;
         try {
             outputLines = Files.readAllLines(file.toPath());
         } catch (IOException e) {
-            throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
+            throw new AdjustTxtException(error);
         }
 
         if (outputLines.isEmpty()) {
-            throw new AdjustTxtException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
+            throw new AdjustTxtException(error);
         }
 
         if (lineToSkip == LineToSkip.even) {
