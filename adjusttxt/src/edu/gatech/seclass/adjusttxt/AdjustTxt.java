@@ -13,7 +13,7 @@ public class AdjustTxt implements AdjustTxtInterface{
     private String filepath;
     private String prefix;
     private boolean removeEmptyLines;
-    private String error = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE";
+    private static String error = "Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE";
 
     public AdjustTxt(){
         reset();
@@ -259,7 +259,7 @@ public class AdjustTxt implements AdjustTxtInterface{
 
     public static List<String> addPrefixMethod(List<String> outputLines, String prefix) {
         if (prefix.equals("\\t")) {
-            throw new IllegalArgumentException("Usage: adjusttxt [ -s number | -w spacing | -x | -r target | -p prefix ] FILE");
+            throw new IllegalArgumentException(error);
         }
 
         List<String> result = new ArrayList<>();
