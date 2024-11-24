@@ -257,9 +257,9 @@ public class AdjustTxt implements AdjustTxtInterface{
         return result;
     }
 
-    public static List<String> addPrefixMethod(List<String> outputLines, String prefix) {
+    public static List<String> addPrefixMethod(List<String> outputLines, String prefix) throws AdjustTxtException {
         if (prefix.equals("\\t")) {
-            throw new IllegalArgumentException(error);
+            throw new AdjustTxtException(error);
         }
 
         List<String> result = new ArrayList<>();
