@@ -261,7 +261,7 @@ public class AdjustTxt implements AdjustTxtInterface{
     }
 
     public static List<String> addPrefixMethod(List<String> outputLines, String prefix) throws AdjustTxtException {
-        if (prefix.equals("\t")) {
+        if (prefix.equals("\\t")) {
             throw new AdjustTxtException(error);
         }
 
