@@ -160,18 +160,14 @@ public class AdjustTxt implements AdjustTxtInterface{
 
     public static List<String> removeLeadingSpaceMethod(List<String> outputLines) {
         List<String> result = new ArrayList<>();
-
         // for each line in the file
         for (String line : outputLines) {
             if (line == null) {
                 // Replace null lines with empty strings
                 result.add("");
             } else {
-                int j = 0;
-                while (j < line.length() && line.charAt(j) == ' ') {
-                    j = j + 1;
-                }
-                result.add(line.substring(j));
+                // if true then proceed
+                result.add(line.stripLeading());
             }
         }
         return result;
