@@ -167,8 +167,11 @@ public class AdjustTxt implements AdjustTxtInterface{
                 // Replace null lines with empty strings
                 result.add("");
             } else {
-                // if true then proceed
-                result.add(line.stripLeading());
+                int j = 0;
+                while (j < line.length() && line.charAt(j) == ' ') {
+                    j = j + 1;
+                }
+                result.add(line.substring(j));
             }
         }
         return result;
