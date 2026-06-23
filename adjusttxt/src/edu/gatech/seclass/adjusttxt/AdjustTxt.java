@@ -99,17 +99,17 @@ public class AdjustTxt implements AdjustTxtInterface{
         if (lineToSkip == LineToSkip.even) {
             outputLines = skipEvenMethod(outputLines);
         }
-        if (lineToSkip == lineToSkip.odd) {
+        if (lineToSkip == LineToSkip.odd) {
             outputLines = skipOddMethod(outputLines);
         }
 
         if (removeSpaces == RemoveSpaces.leading) {
             outputLines = removeLeadingSpaceMethod(outputLines);
         }
-        if (removeSpaces == removeSpaces.trailing) {
+        if (removeSpaces == RemoveSpaces.trailing) {
             outputLines = removeTrailingSpaceMethod(outputLines);
         }
-        if (removeSpaces == removeSpaces.all) {
+        if (removeSpaces == RemoveSpaces.all) {
             outputLines = removeAllSpaceMethod(outputLines);
         }
 
@@ -117,10 +117,10 @@ public class AdjustTxt implements AdjustTxtInterface{
             outputLines = removeEmptyLineMethod(outputLines);
         }
 
-        if (reverseLine == reverseLine.words) {
+        if (reverseLine == ReverseLine.words) {
             outputLines = reverseWordsMethod(outputLines);
         }
-        if (reverseLine == reverseLine.text) {
+        if (reverseLine == ReverseLine.text) {
             outputLines = reverseTextMethod(outputLines);
         }
 
